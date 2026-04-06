@@ -1,0 +1,89 @@
+{
+  "api_endpoint": "tools/qa/free-dummy-phone",
+  "request_method": "post",
+  "header": {
+    "content_type": "application/json"
+  },
+  "test_data": [
+    {
+      "id": "1",
+      "test_info": {
+        "description": "Clear Number for dummy number 1 ",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+
+      },
+      "body_param": {
+        "tel":"2021111001"
+      },
+      "query_param": {
+      }
+    },
+    {
+      "id": "2",
+      "test_info": {
+        "description": "Clear Number for dummy number 1 ",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+
+      },
+      "body_param": {
+        "tel":"2021111002"
+      },
+      "query_param": {
+      }
+    },
+    {
+      "id": "3",
+      "test_info": {
+        "description": "Clear Number for dummy number 1 ",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+
+      },
+      "body_param": {
+        "tel":"2021111003"
+      },
+      "query_param": {
+      }
+    },
+    {
+      "id": "4",
+      "test_info": {
+        "description": "Clear Number for dummy number 1 ",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+
+      },
+      "body_param": {
+        "tel":"2021111004"
+      },
+      "query_param": {
+      }
+    },
+    {
+      "id": "5",
+      "test_info": {
+        "description": "Clear Number for dummy number 1 ",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+
+      },
+      "body_param": {
+        "tel":"2021111005"
+      },
+      "query_param": {
+      }
+    }
+  ]
+}

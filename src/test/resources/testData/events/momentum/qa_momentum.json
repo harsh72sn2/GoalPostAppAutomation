@@ -1,0 +1,452 @@
+{
+  "api_endpoint": "1/events.json",
+  "request_method": "post",
+  "header": {
+    "content_type": "application/json",
+    "X-CleverTap-Account-Id": "TEST-KZZ-649-9W5Z",
+    "X-CleverTap-Passcode": "CVK-SAV-WSKL"
+  },
+  "test_data": [
+    {
+      "id": "1",
+      "test_info": {
+        "description": "First Hit",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+      },
+      "body_param": {
+        "event_name": "Package_Opened",
+        "keys_to_ignore": "openedFrom,appsflyerId,advertisingId,userLang,currentCategory,userPhone,advertisingId,appsflyerId,userid,mockTestCount,packageName,categoryId,username",
+        "data": [
+          {
+            "userLang": "en",
+            "currentCategory": "07872aa0-cc20-11ea-bd7c-11021ecf25a6",
+            "userPhone": "+917678581894",
+            "testType": "FULLLENGTH",
+            "advertisingId": "8686b2a3-8b62-4fc6-8fc6-73dab4d9b508",
+            "appsflyerId": "1651142635801-3283601819798274992",
+            "userid": "cc652f70-bfb2-11ec-b6af-d446876bf65d",
+            "mockTestCount": "0",
+            "DeviceType": "Android",
+            "openedFrom": "Release Plan",
+            "packageName": "SSC JE CE 2022 Full-Length Tests",
+            "userType": "SFT",
+            "categoryId": "07872aa0-cc20-11ea-bd7c-11021ecf25a6",
+            "username": "Nishh"
+          }
+        ]
+      },
+      "query_param": {
+      }
+    },{
+      "id": "2",
+      "test_info": {
+        "description": "First Hit",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+      },
+      "body_param": {
+        "event_name": "Test Series Tab Clicked",
+        "keys_to_ignore": "userLang,currentCategory,currentCategoryName,userPhone,advertisingId,appsflyerId,userEmail,userid,username",
+        "data": [
+          {
+
+            "DeviceType": "Android",
+            "userLang": "en",
+            "currentCategory": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+            "currentCategoryName": "PO, Clerk, SO, Insurance",
+            "userPhone": "+915555544444",
+            "advertisingId": "a9ae8810-faa8-4645-8724-3a5eae2ebf33",
+            "appsflyerId": "1652165741743-3660535246309766623",
+            "userEmail": "paiduser@grdp.co",
+            "userType": "super paid",
+            "TabName": "MyClassroomTabFragment",
+            "userid": "529d5530-c235-11eb-b49b-27a7928fbf78",
+            "username": "Paiduser"
+          }
+        ]
+      },
+      "query_param": {
+      }
+    },{
+      "id": "3",
+      "test_info": {
+        "description": "First Hit",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+      },
+      "body_param": {
+        "event_name": "Exam_Clicked",
+        "keys_to_ignore": "userLang,currentCategory,examGroupName,userPhone,advertisingId,appsflyerId,userName,categoryName,userId,userid,examGroupId,isPaid,currentCategoryName,ScreenName,userEmail,isFeatured,categoryId,username,userMentor,productType",
+        "data": [
+          {
+
+            "currentCategory": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+            "userLang": "en",
+            "examGroupName": "IBPS Clerk",
+            "userPhone": "+915555544444",
+            "advertisingId": "a9ae8810-faa8-4645-8724-3a5eae2ebf33",
+            "appsflyerId": "1652165741743-3660535246309766623",
+            "userName": "Paiduser",
+            "categoryName": "PO, Clerk, SO, Insurance",
+            "userId": "529d5530-c235-11eb-b49b-27a7928fbf78",
+            "userid": "529d5530-c235-11eb-b49b-27a7928fbf78",
+            "examGroupId": "5c0abca3-4d53-11e5-be2e-6600ad30e504",
+            "isPaid": "true",
+            "DeviceType": "Android",
+            "currentCategoryName": "PO, Clerk, SO, Insurance",
+            "ScreenName": "HomeActivity",
+            "userEmail": "paiduser@grdp.co",
+            "userType": "super paid",
+            "TabName": "TestSeriesFragment",
+            "isFeatured": "false",
+            "categoryId": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+            "productType": "SUPER_",
+            "userMentor": "FALSE",
+            "username": "Paiduser"
+          }
+        ]
+      },
+      "query_param": {
+      }
+    },{
+      "id": "4",
+      "test_info": {
+        "description": "First Hit",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+      },
+      "body_param": {
+        "event_name": "Sectional_Test_Visited",
+        "keys_to_ignore": "TabName,userLang,currentCategory,examGroupName,userPhone,advertisingId,appsflyerId,userName,categoryName,userId,userid,examGroupId,isPaid,currentCategoryName,ScreenName,userEmail,isFeatured,categoryId,username,userMentor,productType,groupId",
+        "data": [
+          {
+            "currentCategory": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+            "userLang": "en",
+            "groupId": "5c0abca3-4d53-11e5-be2e-6600ad30e504",
+            "userPhone": "+915555544444",
+            "advertisingId": "a9ae8810-faa8-4645-8724-3a5eae2ebf33",
+            "appsflyerId": "1652165741743-3660535246309766623",
+            "userName": "Paiduser",
+            "userId": "529d5530-c235-11eb-b49b-27a7928fbf78",
+            "userid": "529d5530-c235-11eb-b49b-27a7928fbf78",
+            "DeviceType": "Android",
+            "groupName": "IBPS Clerk",
+            "currentCategoryName": "PO, Clerk, SO, Insurance",
+            "ScreenName": "TestSeriesExamDetailActivity",
+            "userEmail": "paiduser@grdp.co",
+            "TabName": "SingleMockTopicFragment",
+            "userType": "super paid",
+            "categoryId": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+            "userMentor": "FALSE",
+            "username": "Paiduser"
+
+          }
+        ]
+      },
+      "query_param": {
+      }
+    },{
+      "id": "5",
+      "test_info": {
+        "description": "First Hit",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+      },
+      "body_param": {
+        "event_name": "MT_Started",
+        "keys_to_ignore": "freeMock,notified,packageId,mockTestId,postType,currentCategory,userLang,currentCategory,examGroupName,userPhone,advertisingId,appsflyerId,userName,categoryName,userId,userid,examGroupId,isPaid,currentCategoryName,ScreenName,userEmail,isFeatured,categoryId,username,userMentor,productType,groupId,testState",
+        "data": [
+          {
+            "testState": "LOCKED",
+            "currentCategory": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+            "userLang": "en",
+            "postType": "MockTest",
+            "notified": "No",
+            "userPhone": "+915555544444",
+            "packageId": "6f7b37e0-d28d-11eb-9e4d-6e24f17229b5",
+            "testType": "SECTIONAL",
+            "advertisingId": "a9ae8810-faa8-4645-8724-3a5eae2ebf33",
+            "appsflyerId": "1652165741743-3660535246309766623",
+            "mockTestId": "8eb97db0-d25b-11eb-b412-1fe81c69d020",
+            "userName": "Paiduser",
+            "userId": "529d5530-c235-11eb-b49b-27a7928fbf78",
+            "userid": "529d5530-c235-11eb-b49b-27a7928fbf78",
+            "DeviceType": "Android",
+            "currentCategoryName": "PO, Clerk, SO, Insurance",
+            "ScreenName": "ReleasePlanActivity",
+            "userEmail": "paiduser@grdp.co",
+            "openedFrom": "Release Plan",
+            "userType": "super paid",
+            "freeMock": "no",
+            "categoryId": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+            "userMentor": "FALSE",
+            "username": "Paiduser"
+
+          }
+        ]
+      },
+      "query_param": {
+      }
+    },{
+      "id": "6",
+      "test_info": {
+        "description": "First Hit",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+      },
+      "body_param": {
+        "event_name": "MT_Result_Page_Opened",
+        "keys_to_ignore": "product,freeMock,currentCategory,userLang,currentCategory,examGroupName,userPhone,advertisingId,appsflyerId,userName,categoryName,userId,userid,examGroupId,isPaid,currentCategoryName,ScreenName,userEmail,isFeatured,categoryId,username,userMentor,productType,groupId,testState,openedFrom",
+        "data": [
+          {
+            "product": "super",
+            "currentCategory": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+            "userLang": "en",
+            "userPhone": "+915555544444",
+            "advertisingId": "a4f5a2d9-d44c-44a1-a407-fe5ce3a11776",
+            "appsflyerId": "1652188617739-494562145986831120",
+            "userName": "Paiduser",
+            "userId": "529d5530-c235-11eb-b49b-27a7928fbf78",
+            "userid": "529d5530-c235-11eb-b49b-27a7928fbf78",
+            "isPaid": "true",
+            "DeviceType": "Android",
+            "currentCategoryName": "PO, Clerk, SO, Insurance",
+            "ScreenName": "MockTestResultAnalysisActivity",
+            "userEmail": "paiduser@grdp.co",
+            "openedFrom": "Release Plan",
+            "userType": "super paid",
+            "freeMock": "true",
+            "userMentor": "FALSE",
+            "username": "Paiduser"
+          }
+        ]
+      },
+      "query_param": {
+      }
+    },{
+      "id": "7",
+      "test_info": {
+        "description": "First Hit",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+      },
+      "body_param": {
+        "event_name": "ViewAll_MockTest_Clicked",
+        "keys_to_ignore": "product,currentCategory,userLang,currentCategory,examGroupName,userPhone,advertisingId,appsflyerId,userName,categoryName,userId,userid,examGroupId,isPaid,currentCategoryName,ScreenName,userEmail,isFeatured,categoryId,username,userMentor,productType,groupId,testState",
+        "data": [
+          {
+
+            "currentCategory": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+            "userLang": "en",
+            "userPhone": "+915656565654",
+            "advertisingId": "a4f5a2d9-d44c-44a1-a407-fe5ce3a11776",
+            "appsflyerId": "1652188617739-494562145986831120",
+            "userName": "Test",
+            "categoryName": "PO, Clerk, SO, Insurance",
+            "userId": "5262eaf0-f8a8-11ea-bc7e-98079ab7303f",
+            "userid": "5262eaf0-f8a8-11ea-bc7e-98079ab7303f",
+            "isPaid": "false",
+            "DeviceType": "Android",
+            "currentCategoryName": "PO, Clerk, SO, Insurance",
+            "ScreenName": "HomeActivity",
+            "userEmail": "unpaiduser@grdp.co",
+            "userType": "resft",
+            "TabName": "TestSeriesFragment",
+            "categoryId": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+            "productType": "SUPER_",
+            "userMentor": "FALSE",
+            "username": "Test"
+          }
+        ]
+      },
+      "query_param": {
+      }
+    },{
+      "id": "8",
+      "test_info": {
+        "description": "First Hit",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+      },
+      "body_param": {
+        "event_name": "Mock_Rating_Submit",
+        "keys_to_ignore": "product,userMentor,currentCategory,userLang,currentCategory,examGroupName,userPhone,advertisingId,appsflyerId,userName,categoryName,userId,userid,examGroupId,isPaid,currentCategoryName,ScreenName,userEmail,isFeatured,categoryId,username,userMentor,productType,groupId,testState",
+        "data": [
+          {
+
+            "currentCategory": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+            "userLang": "en",
+            "userPhone": "+912021111001",
+            "advertisingId": "a4f5a2d9-d44c-44a1-a407-fe5ce3a11776",
+            "appsflyerId": "1652188617739-494562145986831120",
+            "entityId": "4514d650-a064-11ec-81d9-f2aea1ad9541",
+            "userName": "Amar",
+            "userId": "d2a02e30-d065-11ec-9f90-ebcb5499b2ab",
+            "userid": "d2a02e30-d065-11ec-9f90-ebcb5499b2ab",
+            "DeviceType": "Android",
+            "rating1": "3",
+            "currentCategoryName": "PO, Clerk, SO, Insurance",
+            "rating2": "0",
+            "rating3": "0",
+            "rating4": "0",
+            "rating5": "0",
+            "ScreenName": "MockTestResultAnalysisActivity",
+            "userType": "nonPaid",
+            "categoryId": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+            "userMentor": "FALSE",
+            "username": "Amar"
+          }
+        ]
+      },
+      "query_param": {
+      }
+    },{
+      "id": "9",
+      "test_info": {
+        "description": "First Hit",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+      },
+      "body_param": {
+        "event_name": "View_Detailed_Report_Clicked",
+        "keys_to_ignore": "product,currentCategory,userLang,currentCategory,examGroupName,userPhone,advertisingId,appsflyerId,userName,categoryName,userId,userid,examGroupId,isPaid,currentCategoryName,ScreenName,userEmail,isFeatured,categoryId,username,userMentor,productType,groupId,testState",
+        "data": [
+          {
+
+            "currentCategory": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+            "userLang": "en",
+            "userPhone": "+915555544444",
+            "advertisingId": "a4f5a2d9-d44c-44a1-a407-fe5ce3a11776",
+            "appsflyerId": "1652188617739-494562145986831120",
+            "userName": "Paiduser",
+            "categoryName": "PO, Clerk, SO, Insurance",
+            "userId": "529d5530-c235-11eb-b49b-27a7928fbf78",
+            "userid": "529d5530-c235-11eb-b49b-27a7928fbf78",
+            "DeviceType": "Android",
+            "currentCategoryName": "PO, Clerk, SO, Insurance",
+            "ScreenName": "MockTestResultAnalysisActivity",
+            "userEmail": "paiduser@grdp.co",
+            "userType": "super paid",
+            "categoryId": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+            "userMentor": "FALSE",
+            "username": "Paiduser"
+          }
+        ]
+      },
+      "query_param": {
+      }
+    },{
+      "id": "10",
+      "test_info": {
+        "description": "First Hit",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+      },
+      "body_param": {
+        "event_name": "View_All_Topics",
+        "keys_to_ignore": "currentCategory,advertisingId,appsflyerId,categoryName,categoryId",
+        "data": [
+          {
+            "DeviceType": "Android",
+            "currentCategory": "735a8d9d-61bf-11e5-b426-78cc7420d9ea",
+            "advertisingId": "8686b2a3-8b62-4fc6-8fc6-73dab4d9b508",
+            "appsflyerId": "1650871764064-1609694040534704221",
+            "openedFrom": "testSeries",
+            "userType": "gc paid",
+            "categoryName": "Testing Exam",
+            "categoryId": "735a8d9d-61bf-11e5-b426-78cc7420d9ea"
+          }
+        ]
+      },
+      "query_param": {
+      }
+    },{
+      "id": "11",
+      "test_info": {
+        "description": "First Hit",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+      },
+      "body_param": {
+        "event_name": "banner_impression",
+        "keys_to_ignore": "cta,product,currentCategory,bannerType,bannerUrgencyVisible,bannerBody,advertisingId,appsflyerId,bannerHeader",
+        "data": [
+          {
+            "cta": "Buy Now",
+            "DeviceType": "Android",
+            "product": "superMembership",
+            "currentCategory": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+            "bannerType": "",
+            "bannerUrgencyVisible": "true",
+            "bannerBody": "Get unlimited access to Online Classroom Program",
+            "advertisingId": "8686b2a3-8b62-4fc6-8fc6-73dab4d9b508",
+            "appsflyerId": "1650871764064-1609694040534704221",
+            "userType": "SFT",
+            "TabName": "MyClassroomTabFragment",
+            "bannerHeader": "Your free trial is expiring in \u003cfont color\u003d\u0027#F9801C\u0027\u003e1 days\u003c/font\u003e"
+          }
+        ]
+      },
+      "query_param": {
+      }
+    },{
+      "id": "11",
+      "test_info": {
+        "description": "First Hit",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+      },
+      "body_param": {
+        "event_name": "Read_More_Review",
+        "keys_to_ignore": "examCategoryName,currentCategory,rating,advertisingId,appsflyerId,examCategoryId,currentCategoryName,appsflyerId,bannerHeader,reviewText,username",
+        "data": [
+          {
+            "examCategoryName": "CLAT UG",
+            "userLang": "en",
+            "currentCategory": "31de6b20-0fd9-11e8-8193-88179496cfbc",
+            "userPhone": "+917678581894",
+            "rating": "5.0",
+            "advertisingId": "a9ae8810-faa8-4645-8724-3a5eae2ebf33",
+            "appsflyerId": "1652340014519-4815796127800122113",
+            "examCategoryId": "31de6b20-0fd9-11e8-8193-88179496cfbc",
+            "userid": "b674a310-cb67-11ec-adeb-a499e5e0227d",
+            "DeviceType": "Android",
+            "currentCategoryName": "CLAT UG",
+            "openedFrom": "Classroom",
+            "userType": "nonPaid",
+            "TabName": "CoursesFragment",
+            "reviewText": "The BYJU\u0027S Exam Prep (Formerly Gradeup) live sessions helped me a lot in my preparation. The faculty were experts in their subjects and their classes were amazing. Regular practice is very important. The live sessions were extremely helpful. BYJU\u0027S Exam Prep (Formerly Gradeup) started from the very basics which is great. Daily quiz, daily GK, mocks, sectional tests, articles on important topics boosted my preparation.",
+            "username": "Nishhh"
+          }
+        ]
+      },
+      "query_param": {
+      }
+    }
+  ]
+}

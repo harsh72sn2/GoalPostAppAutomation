@@ -1,0 +1,56 @@
+{
+  "api_endpoint": "1/events.json",
+  "request_method": "post",
+  "header": {
+    "content_type": "application/json",
+    "X-CleverTap-Account-Id": "TEST-KZZ-649-9W5Z",
+    "X-CleverTap-Passcode": "CVK-SAV-WSKL"
+  },
+  "test_data": [
+    {
+      "id": "1",
+      "test_info": {
+        "description": "First Hit",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+      },
+      "body_param": {
+        "event_name": "Quick_Link_Clicked",
+        "keys_to_ignore": "appsflyerId,advertisingId",
+        "data": [
+          {
+            "userId": "ba2c7b80-c212-11ec-8c26-0f2dae94c629",
+            "userType": "nonPaid",
+            "ScreenName": "HomeActivity",
+            "TabName": "HTSHomeTabFragment",
+            "userid": "ba2c7b80-c212-11ec-8c26-0f2dae94c629",
+            "quickLinkVersion": "V2",
+            "userLang": "en",
+            "quickLinkPosition": "1",
+            "userName": "Shivi Test",
+            "redDotShown": "true",
+            "userPhone": "+919759145099",
+            "tab_Name": "home",
+            "examId": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+            "quickLinkType": "Daily Current Affairs",
+            "quickLinkSetName": "CurrentAffairs",
+            "userMentor": "FALSE",
+            "DeviceType": "Android",
+            "linkName": "https://live.grdp.co/openBatchById?id=c7c8e310-492b-11ec-99d7-f3b5e5311bb3",
+            "currentCategoryName": "PO, Clerk, SO, Insurance",
+            "username": "Shivi Test",
+            "categoryType": "LTS",
+            "advertisingId": "8b6a55cd-5a15-43d7-b4e7-646794942f42",
+            "currentCategory": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+            "quickLinkKey": "2",
+            "appsflyerId": "1651660773371-9014630609041080351"
+          }
+        ]
+      },
+      "query_param": {
+      }
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "api_endpoint": "1/events.json",
+  "request_method": "post",
+  "header": {
+    "content_type": "application/json",
+    "X-CleverTap-Account-Id": "TEST-KZZ-649-9W5Z",
+    "X-CleverTap-Passcode": "CVK-SAV-WSKL"
+  },
+  "test_data": [
+    {
+      "id": "1",
+      "test_info": {
+        "description": "First Hit",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+      },
+      "body_param": {
+        "body_param": {
+          "event_name": "Onbo Task Completed",
+          "keys_to_ignore": "appsflyerId,advertisingId",
+          "data": [
+            {
+              "currentCategory": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+              "userLang": "en",
+              "userPhone": "+912021111004",
+              "advertisingId": "81edcd44-575f-4c30-a11e-9fdd8a7060ed",
+              "appsflyerId": "1651670838450-1645734352946768847",
+              "userName": "Saloni",
+              "userId": "fee230e0-cbad-11ec-9a59-89ff2af0ad82",
+              "userid": "fee230e0-cbad-11ec-9a59-89ff2af0ad82",
+              "DeviceType": "Android",
+              "currentCategoryName": "PO, Clerk, SO, Insurance",
+              "onboTaskType": "onboarding video",
+              "ScreenName": "HomeActivity",
+              "TabName": "HTSHomeTabFragment",
+              "userType": "nonPaid",
+              "username": "Saloni"
+            }
+          ]
+        },
+        "query_param": {
+        }
+      }
+    },
+    {
+      "id": "2",
+      "test_info": {
+        "description": "second Event",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+      },
+      "body_param": {
+        "event_name": "Onbo Lead form Answered",
+        "keys_to_ignore": "appsflyerId,advertisingId,SubjectId,userId,userType,userMentor,currentCategoryName,userName,currentCategory,userPhone",
+        "data": [
+          {
+            "currentCategory": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+            "userLang": "en",
+            "question": "Are you looking for Exam Preparation Guidance?",
+            "userPhone": "+912021111004",
+            "advertisingId": "81edcd44-575f-4c30-a11e-9fdd8a7060ed",
+            "appsflyerId": "1651670838450-1645734352946768847",
+            "userName": "Saloni",
+            "userId": "fee230e0-cbad-11ec-9a59-89ff2af0ad82",
+            "userid": "fee230e0-cbad-11ec-9a59-89ff2af0ad82",
+            "DeviceType": "Android",
+            "answer": " Yes",
+            "currentCategoryName": "PO, Clerk, SO, Insurance",
+            "ScreenName": "AsyncVideoPlayerActivity",
+            "id": "bank-1",
+            "userType": "nonPaid",
+            "username": "Saloni"
+          }
+        ]
+      },
+      "query_param": {
+      }
+    },
+    {
+      "id": "3",
+      "test_info": {
+        "description": "third Event",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+      },
+      "body_param": {
+        "event_name": "Exam Opt In Action",
+        "keys_to_ignore": "appsflyerId,advertisingId,SubjectId,userId,userType,userMentor,currentCategoryName,userName,currentCategory,userPhone",
+        "data": [
+          {
+              "CategoryId": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+              "GroupName": "IBPS RRB Clerk",
+              "userLang": "en",
+              "currentCategory": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+              "userPhone": "+912021111004",
+              "advertisingId": "81edcd44-575f-4c30-a11e-9fdd8a7060ed",
+              "appsflyerId": "1651670838450-1645734352946768847",
+              "userid": "fee230e0-cbad-11ec-9a59-89ff2af0ad82",
+              "GroupId": "9f51a700-4f61-11e7-9ba7-0df0ab430df8",
+              "sectionName": "onboarding",
+              "DeviceType": "Android",
+              "currentCategoryName": "PO, Clerk, SO, Insurance",
+              "userType": "nonPaid",
+              "value": "yes",
+              "username": "Saloni"
+            }
+          ]
+          },
+      "query_param": {
+      }
+    },
+    {
+      "id": "2",
+      "test_info": {
+        "description": "second Event",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+      },
+      "body_param": {
+        "event_name": "Onbo Ebook Downloaded",
+        "keys_to_ignore": "appsflyerId,advertisingId,SubjectId,userId,userType,userMentor,currentCategoryName,userName,currentCategory,userPhone",
+        "data": [
+          {
+            "CategoryId": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+            "GroupName": "IBPS RRB Clerk",
+            "userLang": "en",
+            "currentCategory": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+            "userPhone": "+912021111004",
+            "advertisingId": "81edcd44-575f-4c30-a11e-9fdd8a7060ed",
+            "appsflyerId": "1651670838450-1645734352946768847",
+            "userid": "fee230e0-cbad-11ec-9a59-89ff2af0ad82",
+            "GroupId": "9f51a700-4f61-11e7-9ba7-0df0ab430df8",
+            "sectionName": "onboarding",
+            "DeviceType": "Android",
+            "currentCategoryName": "PO, Clerk, SO, Insurance",
+            "userType": "nonPaid",
+            "value": "yes",
+            "username": "Saloni"
+          }
+        ]
+      },
+      "query_param": {
+      },
+      "query_param": {
+      }
+    }
+  ]
+}

@@ -1,0 +1,368 @@
+{
+  "api_endpoint": "1/events.json",
+  "request_method": "post",
+  "header": {
+    "content_type": "application/json",
+    "X-CleverTap-Account-Id": "TEST-KZZ-649-9W5Z",
+    "X-CleverTap-Passcode": "CVK-SAV-WSKL"
+  },
+  "test_data": [
+    {
+      "id": "1",
+      "test_info": {
+        "description": "First Hit",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+      },
+      "body_param": {
+        "event_name": "Quick_Link_Clicked",
+        "keys_to_ignore": "appsflyerId,advertisingId,userId,userType,TabName,userid,quickLinkPosition,userName,userPhone,userMentor,linkName,quickLinkKey,examId,currentCategory,userEmail,username",
+        "data": [
+          {
+            "userId": "ba2c7b80-c212-11ec-8c26-0f2dae94c629",
+            "userType": "nonPaid",
+            "ScreenName": "HomeActivity",
+            "TabName": "HTSHomeTabFragment",
+            "userid": "ba2c7b80-c212-11ec-8c26-0f2dae94c629",
+            "quickLinkVersion": "V2",
+            "userLang": "en",
+            "quickLinkPosition": "1",
+            "userName": "Shivi Test",
+            "redDotShown": "true",
+            "userPhone": "+919759145099",
+            "tab_Name": "home",
+            "examId": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+            "quickLinkType": "Daily Current Affairs",
+            "quickLinkSetName": "CurrentAffairs",
+            "userMentor": "FALSE",
+            "DeviceType": "Android",
+            "linkName": "https://live.grdp.co/openBatchById?id=c7c8e310-492b-11ec-99d7-f3b5e5311bb3",
+            "currentCategoryName": "PO, Clerk, SO, Insurance",
+            "username": "Shivi Test",
+            "categoryType": "LTS",
+            "advertisingId": "8b6a55cd-5a15-43d7-b4e7-646794942f42",
+            "currentCategory": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+            "quickLinkKey": "2",
+            "appsflyerId": "1651660773371-9014630609041080351"
+          }
+        ]
+      },
+      "query_param": {
+      }
+    },
+    {
+      "id": "2",
+      "test_info": {
+        "description": "second Event",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+      },
+      "body_param": {
+        "event_name": "Async_Subject_Page_Opened",
+        "keys_to_ignore": "appsflyerId,advertisingId,SubjectId,userId,userType,userMentor,currentCategoryName,userName,currentCategory,userPhone",
+        "data": [
+          {
+            "params": {
+              "SubjectId": "187",
+              "source": "Home",
+              "userId": "ba2c7b80-c212-11ec-8c26-0f2dae94c629",
+              "userType": "nonPaid",
+              "ScreenName": "AsyncSubjectActivity",
+              "SubjectName": "English",
+              "Number of Videos": "49",
+              "userMentor": "FALSE",
+              "DeviceType": "Android",
+              "userLang": "en",
+              "currentCategoryName": "PO, Clerk, SO, Insurance",
+              "Number of Chapters": "10",
+              "advertisingId": "8b6a55cd-5a15-43d7-b4e7-646794942f42",
+              "userName": "Shivi Test",
+              "currentCategory": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+              "userPhone": "+919759145099",
+              "appsflyerId": "1652080757142-234628353154152292"
+            }
+          }
+        ]
+      },
+      "query_param": {
+      }
+    },
+    {
+      "id": "3",
+      "test_info": {
+        "description": "third Event",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+      },
+      "body_param": {
+        "event_name": "Async_Chapter_Page_Opened",
+        "keys_to_ignore": "currentCategory,appsflyerId,categoryId,categoryName,currentCategory,ChapterID,userType,SubjectID,userid,userPhone,packageId,advertisingId,userName,userId,currentCategoryName,testState,testType,username",
+        "data": [
+          {
+            "params": {
+              "source": "subject_page_viewall",
+              "userType": "nonPaid",
+              "SubjectID": "187",
+              "SubjectName": "English",
+              "Number of Videos": "19",
+              "DeviceType": "Android",
+              "userid": "ba2c7b80-c212-11ec-8c26-0f2dae94c629",
+              "ChapterName": "Grammar",
+              "userLang": "en",
+              "currentCategoryName": "PO, Clerk, SO, Insurance",
+              "username": "Shivi Test",
+              "ChapterID": "215",
+              "advertisingId": "8b6a55cd-5a15-43d7-b4e7-646794942f42",
+              "currentCategory": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+              "userPhone": "+919759145099",
+              "appsflyerId": "1652080757142-234628353154152292"
+            }
+          }
+        ]
+      },
+      "query_param": {
+      }
+    },
+    {
+      "id": "4",
+      "test_info": {
+        "description": "fourth  Event",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+      },
+      "body_param": {
+        "event_name": "Async_Subject_Page_TimeSpent",
+        "keys_to_ignore": "currentCategory,appsflyerId,userid,username,deeplink,SubjectIcon,categoryId,categoryName,Number of Videos,userType,SubjectId,userPhone,packageId,advertisingId,userName,userId,currentCategoryName,userMentor",
+        "data": [
+          {
+            "params": {
+              "SubjectId": "187",
+              "source": "Home",
+              "userId": "ba2c7b80-c212-11ec-8c26-0f2dae94c629",
+              "userType": "nonPaid",
+              "ScreenName": "AsyncSubjectActivity",
+              "TimeSpent": "15sec",
+              "SubjectName": "Quantitative Aptitude",
+              "Number of Videos": "49",
+              "DeviceType": "Android",
+              "userMentor": "FALSE",
+              "userid": "ba2c7b80-c212-11ec-8c26-0f2dae94c629",
+              "userLang": "en",
+              "currentCategoryName": "PO, Clerk, SO, Insurance",
+              "username": "Shivi Test",
+              "Number of Chapters": "10",
+              "advertisingId": "8b6a55cd-5a15-43d7-b4e7-646794942f42",
+              "deeplink": "https://byjusexamprep.com/asyncsubject?subjectId\u003d187\u0026examId\u003d72975611-4a5e-11e5-a83f-8b51c790d8b8",
+              "userName": "Shivi Test",
+              "currentCategory": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+              "SubjectIcon": "https://gs-groups-images.grdp.co/grpimg1651662627165-16.png",
+              "userPhone": "+919759145099",
+              "appsflyerId": "1652080757142-234628353154152292"
+            }
+          }
+        ]
+      },
+      "query_param": {
+      }
+    },
+    {
+      "id": "5",
+      "test_info": {
+        "description": "fifth  Event",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+      },
+      "body_param": {
+        "event_name": "Async_Entity_Clicked",
+        "keys_to_ignore": "currentCategory,appsflyerId,categoryId,EntityName,deeplink,username,categoryName,SubjectName,userType,userPhone,packageId,advertisingId,mockTestId,userName,userId,currentCategoryName,testState,testType",
+        "data": [
+          {
+            "params": {
+              "source": "subject_detail_page",
+              "userType": "non-paid",
+              "SubjectName": "Geography",
+              "duration": "0",
+              "DeviceType": "Android",
+              "userid": "ba2c7b80-c212-11ec-8c26-0f2dae94c629",
+              "EntityType": "video",
+              "ChapterName": "Course Outline",
+              "userLang": "en",
+              "currentCategoryName": "IAS",
+              "username": "Shivi Test",
+              "EntityName": "Course Outline",
+              "deeplink": "https://byjusexamprep.com/asyncVideo?asyncVideoId\u003d9219a10a-0e7a-11ec-be88-278fdacde35d\u0026examId\u003d93757a60-d19a-11ea-8de9-66b7ba1ce691",
+              "advertisingId": "8b6a55cd-5a15-43d7-b4e7-646794942f42",
+              "currentCategory": "93757a60-d19a-11ea-8de9-66b7ba1ce691",
+              "userPhone": "+919759145099",
+              "appsflyerId": "1652080757142-234628353154152292"
+            }
+          }
+        ]
+      },
+      "query_param": {
+      }
+    },
+    {
+      "id": "6",
+      "test_info": {
+        "description": "sixth  Event",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+      },
+      "body_param": {
+        "event_name": "Async_video_list_opened",
+        "keys_to_ignore": "currentCategory,appsflyerId,categoryId,packageName,categoryName,mockTestCount,userType,userPhone,packageId,advertisingId,mockTestId,userName,userId,currentCategoryName,testState,testType",
+        "data": [
+          {
+            "params": {
+              "source": "Popular Carousel on Home",
+              "userType": "non-paid",
+              "blockId": "null",
+              "listType": "popular lessons",
+              "DeviceType": "Android",
+              "userid": "ba2c7b80-c212-11ec-8c26-0f2dae94c629",
+              "userLang": "en",
+              "currentCategoryName": "IAS",
+              "username": "Shivi Test",
+              "advertisingId": "8b6a55cd-5a15-43d7-b4e7-646794942f42",
+              "currentCategory": "93757a60-d19a-11ea-8de9-66b7ba1ce691",
+              "userPhone": "+919759145099",
+              "appsflyerId": "1652080757142-234628353154152292"
+            }
+          }
+        ]
+      },
+      "query_param": {
+      }
+    },
+    {
+      "id": "7",
+      "test_info": {
+        "description": "seventh  Event",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+      },
+      "body_param": {
+        "event_name": "series_dashboard",
+        "keys_to_ignore": "currentCategory,webViewVersionName,batchName,webViewVersionCode,appsflyerId,groupId,tabName,isFree,isEnrolled,batchId,username,userMentor,batchStatus,categoryId,batchLanguage,packageName,categoryName,userType,userPhone,packageId,advertisingId,isPaid,userName,userId,currentCategoryName,testState,testType",
+        "data": [
+          {
+            "params": {
+              "webViewVersionName": "0.0.0.1",
+              "userId": "ba2c7b80-c212-11ec-8c26-0f2dae94c629",
+              "webViewVersionCode": "100",
+              "userType": "SFT",
+              "ScreenName": "VideoSeriesActivity",
+              "tabName": "",
+              "batchName": "SBI \u0026 IBPS PO 2022 Exams: Speed \u0026 Distance Q\u0027s - Solve in an Instance",
+              "userid": "ba2c7b80-c212-11ec-8c26-0f2dae94c629",
+              "userLang": "en",
+              "groupId": "83c948fa-07a9-11e6-87a2-8e26f14f2a0c",
+              "userName": "Shivi Test",
+              "userPhone": "+919759145099",
+              "isFree": "false",
+              "examId": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+              "isEnrolled": "false",
+              "categoryId": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+              "batchId": "36c5a974-cd0c-11ec-9265-03d4388e6f72",
+              "DeviceType": "Android",
+              "userMentor": "FALSE",
+              "currentCategoryName": "PO, Clerk, SO, Insurance",
+              "username": "Shivi Test",
+              "batchStatus": "Study Plan Active",
+              "isPaid": "true",
+              "batchType": "Short Series",
+              "advertisingId": "8b6a55cd-5a15-43d7-b4e7-646794942f42",
+              "openedFrom": "series-list",
+              "currentCategory": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+              "appsflyerId": "1652080757142-234628353154152292",
+              "batchLanguage": "en,hi"
+            }
+          }
+        ]
+      },
+      "query_param": {
+      }
+    },
+    {
+      "id": "8",
+      "test_info": {
+        "description": "Eighth Event",
+        "expected_result": "Error",
+        "expected_status_code": "200"
+      },
+      "request_param": {
+      },
+      "body_param": {
+        "event_name": "entity_start",
+        "keys_to_ignore": "currentCategory,userid,batchName,batchStatus,categoryId,subjectName,username,batchId,isEnrolled,volume,examId,isFree,userName,webViewVersionName,groupId,TabName,tabName,entityName,ScreenName,userType,webViewVersionCode,appsflyerId,categoryId,packageName,categoryName,mockTestCount,userType,userPhone,packageId,advertisingId,mockTestId,userName,userId,currentCategoryName,testState,testType",
+        "data": [
+          {
+            "params": {
+              "webViewVersionName": "0.0.0.1",
+              "isVideo": "true",
+              "webViewVersionCode": "100",
+              "userId": "ba2c7b80-c212-11ec-8c26-0f2dae94c629",
+              "showRecordedLiveClasses": "true",
+              "userType": "SFT",
+              "ScreenName": "VideoCourseDashboardActivity",
+              "videoType": "video",
+              "tabName": "ShortTermVideoSeriesFragment",
+              "TabName": "ShortTermVideoSeriesFragment",
+              "batchName": "SBI \u0026 IBPS PO 2022 Exams: Speed \u0026 Distance Q\u0027s - Solve in an Instance",
+              "userid": "ba2c7b80-c212-11ec-8c26-0f2dae94c629",
+              "userLang": "en",
+              "groupId": "83c948fa-07a9-11e6-87a2-8e26f14f2a0c",
+              "userName": "Shivi Test",
+              "isBookmarked": "false",
+              "userPhone": "+919759145099",
+              "isFree": "false",
+              "examId": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+              "isEnrolled": "false",
+              "volume": "6.6666665",
+              "is_live_on_click": "true",
+              "categoryId": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+              "batchId": "36c5a974-cd0c-11ec-9265-03d4388e6f72",
+              "entityType": "canvasLiveclass",
+              "entityId": "57be7cfa-cd0c-11ec-b153-9d1a7d794cbb",
+              "DeviceType": "Android",
+              "userMentor": "FALSE",
+              "isWorkshop": "false",
+              "entityName": "Speed with Ratio Concept",
+              "currentCategoryName": "PO, Clerk, SO, Insurance",
+              "username": "Shivi Test",
+              "batchStatus": "Study Plan Active",
+              "isPaid": "true",
+              "batchType": "short series",
+              "subjectName": "Speed \u0026 Distance Q\u0027s - Solve in an Instance",
+              "advertisingId": "8b6a55cd-5a15-43d7-b4e7-646794942f42",
+              "teacherName": "Jatin Agrawal",
+              "currentCategory": "72975611-4a5e-11e5-a83f-8b51c790d8b8",
+              "batchLanguage": "en,hi",
+              "appsflyerId": "1652080757142-234628353154152292",
+              "sectionName": "video_course_dashboard",
+              "isDownloaded": "false"
+            }
+          }
+        ]
+      },
+      "query_param": {
+      }
+    }
+  ]
+}
+
