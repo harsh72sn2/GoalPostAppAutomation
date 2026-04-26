@@ -12,6 +12,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
@@ -66,7 +67,6 @@ public class TestListener implements ITestListener
         File screenshot = ((TakesScreenshot)webDriver).getScreenshotAs(OutputType.FILE);
 
         //Take base64Screenshot screenshot.
-        System.out.println(webDriver);
         InputStream is = null;
         try {
             is = new FileInputStream(screenshot);
@@ -82,6 +82,7 @@ public class TestListener implements ITestListener
         String base64Screenshot = Base64.getEncoder().encodeToString(imageBytes);
 
         test.log(Status.PASS, "Snapshot below: Please click base64 image", MediaEntityBuilder.createScreenCaptureFromBase64String(base64Screenshot).build());
+        markBrowserStackSession(webDriver, "passed", "Test passed");
         Log.info((result.getMethod().getMethodName() + " passed!"));
     }
 
@@ -100,7 +101,6 @@ public class TestListener implements ITestListener
 
 
         //Take base64Screenshot screenshot.
-        System.out.println(webDriver);
         InputStream is = null;
         try {
             is = new FileInputStream(screenshot);
@@ -116,6 +116,7 @@ public class TestListener implements ITestListener
         String base64Screenshot = Base64.getEncoder().encodeToString(imageBytes);
 
         test.log(Status.FAIL, "Snapshot below: Please click base64 image", MediaEntityBuilder.createScreenCaptureFromBase64String(base64Screenshot).build());
+        markBrowserStackSession(webDriver, "failed", getFailureReason(result));
         Log.info((result.getMethod().getMethodName() + " failed!"));
         test.fail(result.getThrowable());
     }
@@ -123,9 +124,44 @@ public class TestListener implements ITestListener
     public synchronized void onTestSkipped(ITestResult result) {
         Log.info((result.getMethod().getMethodName() + " skipped!"));
         test.skip(result.getThrowable());
+        Object testClass = result.getInstance();
+        WebDriver webDriver = ((AppBaseSetup) testClass).getDriver();
+        markBrowserStackSession(webDriver, "failed", "Test skipped: " + getFailureReason(result));
     }
 
 
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
+    }
+
+    private void markBrowserStackSession(WebDriver webDriver, String status, String reason) {
+        if(!(webDriver instanceof JavascriptExecutor)) {
+            return;
+        }
+        try {
+            String escapedReason = escapeJson(reason == null ? "" : reason);
+            ((JavascriptExecutor) webDriver).executeScript(
+                    "browserstack_executor: {\"action\":\"setSessionStatus\",\"arguments\":{\"status\":\""
+                            + status + "\",\"reason\":\"" + escapedReason + "\"}}");
+        } catch (Exception e) {
+            Log.warn("Unable to mark BrowserStack session status: " + e.getMessage());
+        }
+    }
+
+    private String getFailureReason(ITestResult result) {
+        if(result.getThrowable() == null || result.getThrowable().getMessage() == null) {
+            return result.getMethod().getMethodName();
+        }
+        return result.getThrowable().getMessage();
+    }
+
+    private String escapeJson(String value) {
+        return value
+                .replace("\\", "\\\\")
+                .replace("\"", "\\\"")
+                .replace("\b", "\\b")
+                .replace("\f", "\\f")
+                .replace("\n", "\\n")
+                .replace("\r", "\\r")
+                .replace("\t", "\\t");
     }
 }

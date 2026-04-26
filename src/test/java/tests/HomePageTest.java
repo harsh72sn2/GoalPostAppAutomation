@@ -33,7 +33,7 @@ public class HomePageTest extends AppBaseSetup {
         signUpPage.clickOnContinueButton();
         signUpPage.enterEmailForSignup("craig@yopmail.com");
         signUpPage.clickContinueSignUpProcess();
-        signUpPage.enterOTP();
+        signUpPage.enterOTP(true);
         signUpPage.hideKeyboard();
         signUpPage.clickContinueSignUpProcess();
         assertions.assertTrue(homePage.checkSearchField());
@@ -87,6 +87,7 @@ public class HomePageTest extends AppBaseSetup {
     {
         int initialLikeCount = Integer.parseInt(homePage.getLikeCount());
         homePage.clickLike();
+        Thread.sleep(3000);
         int finalLikeCount = Integer.parseInt(homePage.getLikeCount());
         assertions.assertEquals(initialLikeCount, finalLikeCount + 1);
         assertions.assertAll();
@@ -133,7 +134,7 @@ public class HomePageTest extends AppBaseSetup {
     public void verifyShareButton() throws InterruptedException
     {
         homePage.clickShareButton();
-        assertions.assertEquals(homePage.verifySharePopUp(), "Sharing text");
+        assertions.assertEquals(homePage.getSharedPostPlatformText(),"Quick Share");
         assertions.assertAll();
     }
 
@@ -142,14 +143,13 @@ public class HomePageTest extends AppBaseSetup {
     {
         assertions.assertTrue(homePage.getSharedPostUrl().contains("goalpostapp"));
         assertions.assertTrue(homePage.getSharedPostUrl().contains("invite"));
-        assertions.assertEquals(homePage.getSharedPostPlatformText(),"WhatsApp");
-        homePage.navigateBack();
         assertions.assertAll();
     }
 
     @Test(description = "14 | Verify Post Three dots options", priority = 13)
     public void verifyThreeDotsEditAndDeleteOption() throws InterruptedException
     {
+        homePage.navigateBack();
         homePage.clickPostThreeDots();
         assertions.assertTrue(homePage.checkPresenceOfEditPost());
         assertions.assertTrue(homePage.checkPresenceOfDeletePost());

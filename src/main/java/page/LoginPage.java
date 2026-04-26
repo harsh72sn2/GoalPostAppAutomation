@@ -62,6 +62,10 @@ public class LoginPage extends AppActionDriver {
     public LoginPage clickLogout()
     {
         TestListener.test.log(Status.INFO,"click logout button");
+        if(!isDisplayed(logoutButton))
+        {
+            scrollToBottom();
+        }
         click(logoutButton);
         return this;
     }

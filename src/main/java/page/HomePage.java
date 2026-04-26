@@ -81,7 +81,7 @@ public class HomePage extends AppActionDriver {
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/content_preview_text']")
     private WebElement sharedPostURL;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/text1' and @text='WhatsApp']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/text1' and @text='Quick Share']")
     private WebElement sharePlatformText;
 
     @AndroidFindBy(xpath = "(//android.widget.ScrollView)[2]//android.view.ViewGroup[2]/android.widget.ImageView")

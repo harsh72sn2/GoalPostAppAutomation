@@ -46,13 +46,13 @@ public class LoginPageTest extends AppBaseSetup {
     }
 
     @Test(description = "3 | login to GoalPost app", priority = 2 ,enabled = true)
-    public void loginToApp()
-    {
+    public void loginToApp() throws InterruptedException {
         signUpPage.closeAlert();
         signUpPage.clearEmailField();
-        signUpPage.enterEmailForSignup("harsh.sn727254@gmail.com");
+        signUpPage.enterEmailForSignup("craig@yopmail.com");
         signUpPage.clickContinueSignUpProcess();
-        //otp entry
+        signUpPage.enterOTP(true);
+        signUpPage.hideKeyboard();
         signUpPage.clickContinueSignUpProcess();
         assertions.assertEquals("My Feed", loginPage.getMyFeedText());
         assertions.assertAll();
@@ -68,7 +68,8 @@ public class LoginPageTest extends AppBaseSetup {
         assertions.assertTrue(loginPage.checkLogoutButtonInMenu());
         loginPage.clickLogout();
         loginPage.clickConfirmLogoutButton();
-        assertions.assertEquals("Welcome to Goal Post", loginPage.getMainScreenWelcomeText());
+        assertions.assertEquals("Welcome to\n" +
+                "Goal Post", loginPage.getMainScreenWelcomeText());
         assertions.assertAll();
 
     }

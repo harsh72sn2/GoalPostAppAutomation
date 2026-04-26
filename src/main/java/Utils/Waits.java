@@ -22,7 +22,7 @@ public class Waits {
 
      public Waits(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         fluentwait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(30)).pollingEvery(Duration.ofMillis(250))
                 .ignoring(NoSuchElementException.class, StaleElementReferenceException.class)
             .ignoring(ElementNotInteractableException.class, ElementClickInterceptedException.class);

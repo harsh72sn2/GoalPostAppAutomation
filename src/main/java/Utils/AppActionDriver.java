@@ -94,8 +94,9 @@ public class AppActionDriver extends Waits {
                 .release().perform();
     }
 
-    public void hideKeyboard() {
+    public void hideKeyboard() throws InterruptedException {
         log.info("Hiding the keyboard");
+        Thread.sleep(5000);
         driver.hideKeyboard();
     }
 
@@ -296,7 +297,7 @@ public class AppActionDriver extends Waits {
         for (int i = 0; i < maxScrolls; i++)
         {
             try {
-                if (element.isDisplayed()) {
+                if (isDisplayed(element)) {
                     return;
                 }
             }

@@ -6,6 +6,8 @@ import com.opencsv.CSVReader;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
@@ -26,27 +28,31 @@ public class AppBaseSetup {
     private AppiumDriverLocalService service;
     private static Logger logger = LogManager.getLogger(AppBaseSetup.class);
     Local bsLocal = new Local();
+    private String currentPlatform;
 
     public static String DEVICE_NAME;
 
     @BeforeClass
     @Parameters({"deviceName", "platformVersion", "appPackage", "appActivity", "platform","bsApp"})
-    public void openApp(@Optional("emulator-5554") String deviceName,
-                        @Optional("14") String platformVersion,
+    public void openApp(@Optional("Samsung Galaxy S22 Ultra:12.0") String deviceName,
+                        @Optional("16") String platformVersion,
                         @Optional("com.football.goalpost") String appPackage,
                         @Optional("com.football.goalpost.MainActivity") String appActivity,
-                        @Optional("app") String platform,
-                        @Optional("") String bsApp) throws Exception {
+                        @Optional("cloud") String platform,
+                        @Optional("bs://11f9818fba27ff8abced0a944513cb4d89a82e1f") String bsApp) throws Exception {
 
         PropertiesFile prop = new PropertiesFile("app.properties");
+        currentPlatform = platform;
 
         ExtentTest classLevelTest = TestListener.extent.createTest(getClass().getSimpleName());
         TestListener.classLevelLog = (classLevelTest);
 
-        // Appium 3 / Appium 2 Server start
-        service = AppiumDriverLocalService.buildService(
-                new AppiumServiceBuilder().withIPAddress("127.0.0.1").usingAnyFreePort());
-        service.start();
+        if(!platform.equals("cloud")) {
+            // Appium 3 / Appium 2 Server start
+            service = AppiumDriverLocalService.buildService(
+                    new AppiumServiceBuilder().withIPAddress("127.0.0.1").usingAnyFreePort());
+            service.start();
+        }
 
         DesiredCapabilities cap = new DesiredCapabilities();
 
@@ -90,10 +96,11 @@ public class AppBaseSetup {
             cap.setCapability("browserName", "Chrome");
         }
         else if (platform.equals("cloud")) {
-            // Cloud/BrowserStack Logic maintained
-            String localIdentifier = "local" + Math.random();
+//            String browserStackUser = getRequiredBrowserStackConfig("browserstack.user", "BROWSERSTACK_USERNAME");
+//            String browserStackKey = getRequiredBrowserStackConfig("browserstack.key", "BROWSERSTACK_ACCESS_KEY");
+            String localIdentifier = "local-" + UUID.randomUUID();
             HashMap<String, String> bsLocalArgs = new HashMap<>();
-            bsLocalArgs.put("key", "sHcASytm5csko3btVAAN");
+            bsLocalArgs.put("key", "a8aXhysEavrVRWGxBquA");
             bsLocalArgs.put("forcelocal", "true");
             bsLocalArgs.put("localIdentifier", localIdentifier);
 
@@ -101,16 +108,41 @@ public class AppBaseSetup {
             bsLocal.start(bsLocalArgs);
 
             String dpf[] = deviceName.split(":");
-            cap.setCapability("browserstack.user", "sanjeevkumar_OjfJti");
-            cap.setCapability("browserstack.key", "sHcASytm5csko3btVAAN");
-            cap.setCapability("browserstack.local", "true");
-            cap.setCapability("browserstack.localIdentifier", localIdentifier);
-            cap.setCapability("deviceName", dpf[0]);
-            cap.setCapability("app", bsApp);
+            MutableCapabilities bstackOptions = new MutableCapabilities();
+            String projectName = getOptionalConfig("browserstack.projectName", "BROWSERSTACK_PROJECT_NAME", "GoalPost App");
+            String buildName = getOptionalConfig("browserstack.buildName", "BROWSERSTACK_BUILD_NAME", "GoalPost App Automation");
+            String sessionName = getOptionalConfig("browserstack.sessionName", "BROWSERSTACK_SESSION_NAME", getClass().getSimpleName());
+            String buildIdentifier = getOptionalConfig("runId", "BROWSERSTACK_BUILD_IDENTIFIER", "");
+            String buildTag = getOptionalConfig("browserstack.buildTag", "BROWSERSTACK_BUILD_TAG", "");
+
+            cap.setCapability("platformName", "Android");
+            cap.setCapability("appium:automationName", "UiAutomator2");
+            cap.setCapability("appium:deviceName", dpf[0].trim());
+            cap.setCapability("appium:platformVersion", dpf.length > 1 ? dpf[1].trim() : platformVersion);
+            cap.setCapability("appium:app", bsApp);
+
+            bstackOptions.setCapability("userName", "craig_eSiPW8");
+            bstackOptions.setCapability("accessKey", "a8aXhysEavrVRWGxBquA");
+            bstackOptions.setCapability("projectName", projectName);
+            bstackOptions.setCapability("buildName", buildName);
+            bstackOptions.setCapability("sessionName", sessionName);
+            bstackOptions.setCapability("debug", true);
+            bstackOptions.setCapability("video", true);
+            bstackOptions.setCapability("networkLogs", true);
+            bstackOptions.setCapability("appiumLogs", true);
+            bstackOptions.setCapability("local", true);
+            bstackOptions.setCapability("localIdentifier", localIdentifier);
+            if(!buildIdentifier.isEmpty()) {
+                bstackOptions.setCapability("buildIdentifier", buildIdentifier);
+            }
+            if(!buildTag.isEmpty()) {
+                bstackOptions.setCapability("buildTag", buildTag);
+            }
+            cap.setCapability("bstack:options", bstackOptions);
         }
 
         if(platform.equals("cloud")) {
-            driver = new AndroidDriver(new URL("http://hub.browserstack.com/wd/hub"), cap);
+            driver = new AndroidDriver(new URL("https://hub.browserstack.com/wd/hub"), cap);
         } else {
             driver = new AndroidDriver(service.getUrl(), cap);
         }
@@ -157,17 +189,93 @@ public class AppBaseSetup {
     @AfterClass
     public void stopServer() throws Exception {
         logger.info("Quit Driver");
-        if(driver != null) driver.quit();
+        if(driver != null) {
+            if(!"cloud".equals(currentPlatform)) {
+                driver.terminateApp("com.football.goalpost");
+            }
+            driver.quit();
+        }
+
         if(bsLocal.isRunning()) bsLocal.stop();
         if(service != null) service.stop();
+        Thread.sleep(60000);
+    }
+
+    private static String getRequiredBrowserStackConfig(String systemPropertyName, String environmentVariableName) {
+        String value = System.getProperty(systemPropertyName);
+        if(value == null || value.trim().isEmpty()) {
+            value = System.getenv(environmentVariableName);
+        }
+        if(value == null || value.trim().isEmpty()) {
+            throw new IllegalArgumentException("Missing BrowserStack config. Set -D" + systemPropertyName
+                    + " or environment variable " + environmentVariableName);
+        }
+        return value.trim();
+    }
+
+    private static String getOptionalConfig(String systemPropertyName, String environmentVariableName, String defaultValue) {
+        String value = System.getProperty(systemPropertyName);
+        if(value == null || value.trim().isEmpty()) {
+            value = System.getenv(environmentVariableName);
+        }
+        return value == null || value.trim().isEmpty() ? defaultValue : value.trim();
     }
 
     @BeforeMethod(alwaysRun = true)
     public void clickOnRegisterButton(ITestResult result) {
+        String testName = result.getTestClass().getRealClass().getSimpleName()
+                + "." + result.getMethod().getMethodName();
+        updateBrowserStackTestName(testName);
+
         ExtentTest extentTest = TestListener.classLevelLog
                 .createNode(result.getMethod().getMethodName(),
                         result.getMethod().getDescription());
         TestListener.test = (extentTest);
         TestListener.test.info("Started execution");
+    }
+
+    private void updateBrowserStackTestName(String testName) {
+        if(!"cloud".equals(currentPlatform) || driver == null) {
+            return;
+        }
+        try {
+            String escapedTestName = escapeJson(testName);
+            ((JavascriptExecutor) driver).executeScript(
+                    "browserstack_executor: {\"action\":\"annotate\",\"arguments\":{\"data\":\"Started test: "
+                            + escapedTestName + "\",\"level\":\"info\"}}");
+        } catch (Exception e) {
+            logger.warn("Unable to update BrowserStack test name: " + e.getMessage());
+        }
+    }
+
+    private String escapeJson(String value) {
+        return value
+                .replace("\\", "\\\\")
+                .replace("\"", "\\\"")
+                .replace("\b", "\\b")
+                .replace("\f", "\\f")
+                .replace("\n", "\\n")
+                .replace("\r", "\\r")
+                .replace("\t", "\\t");
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void logFinalStatus(ITestResult result) {
+        if (driver != null && "cloud".equals(currentPlatform)) {
+            String testName = result.getMethod().getMethodName();
+            String status = result.isSuccess() ? "PASSED" : "FAILED";
+
+            // This adds a final entry to the log and video timeline
+            String finalMarker = "COMPLETED: " + testName + " | Status: " + status;
+            ((JavascriptExecutor) driver).executeScript(
+                    "browserstack_executor: {\"action\": \"annotate\", \"arguments\": {\"data\": \"" + escapeJson(finalMarker) + "\", \"level\": \"" + (result.isSuccess() ? "info" : "error") + "\"}}"
+            );
+
+            // Optional: If one test fails, mark the entire session badge as failed
+            if (!result.isSuccess()) {
+                ((JavascriptExecutor) driver).executeScript(
+                        "browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \"Test " + testName + " failed.\"}}");
+            }
+        }
     }
 }

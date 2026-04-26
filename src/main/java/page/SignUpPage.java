@@ -59,6 +59,9 @@ public class SignUpPage extends AppActionDriver {
     @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc='Close']")
     private WebElement closeAlert;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='OTP must be exactly 6 digits']")
+    private WebElement wrongOTPError;
+
     public SignUpPage clickOnContinueButton() {
         TestListener.test.log(Status.INFO, "click on continue button app start page");
         click(continueButtonStartPage);
@@ -131,14 +134,26 @@ public class SignUpPage extends AppActionDriver {
         return this;
     }
 
-    public SignUpPage enterOTP()
+    public SignUpPage enterOTP(boolean complete)
     {
         TestListener.test.log(Status.INFO,"Entering otp");
-        for(int i=0;i< otpField.size();i++)
-        {
-            type(otpField.get(i),"0");
+        if(complete) {
+            for (int i = 0; i < otpField.size(); i++) {
+                type(otpField.get(i), "0");
+            }
+        }
+        else {
+            for (int i = 0; i < otpField.size()-2; i++) {
+                type(otpField.get(i), "0");
+            }
         }
         return this;
+    }
+
+    public String invalidOTPErrorText()
+    {
+        TestListener.test.log(Status.INFO, "Getting error for otp invalid");
+        return getText(wrongOTPError);
     }
 
 

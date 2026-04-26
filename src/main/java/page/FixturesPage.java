@@ -120,7 +120,7 @@ public class FixturesPage extends AppActionDriver {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Submit Prediction']")
     private WebElement submitPredictionButton;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='No Matches found']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'No Matches found')]")
     private WebElement noMatchesText;
 
     @AndroidFindBy(xpath = "//android.widget.HorizontalScrollView/android.view.ViewGroup/android.view.ViewGroup")
@@ -321,6 +321,12 @@ public class FixturesPage extends AppActionDriver {
     {
         TestListener.test.log(Status.INFO,"no matches displayed");
         return isDisplayed(noMatchesText);
+    }
+
+    public String getNoMatchesText()
+    {
+        TestListener.test.log(Status.INFO,"get no matches text");
+        return getText(noMatchesText);
     }
 
     public FixturesPage clickIncreaseTeam1PredictScore()

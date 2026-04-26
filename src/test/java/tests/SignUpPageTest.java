@@ -45,21 +45,33 @@ public class SignUpPageTest extends AppBaseSetup {
     }
 
 
-    @Test(description = "3 | sign up on GoalPost app", priority = 2 ,enabled = true)
-    public void startSignUp()
-    {
+    @Test(description = "3 | sign up without OTP on GoalPost app", priority = 2 ,enabled = true)
+    public void checkSignUpWithBlankOtp() throws InterruptedException {
         signUpPage.closeAlert();
         signUpPage.clearEmailField();
         signUpPage.enterEmailForSignup("hippo@yopmail.com");
         signUpPage.clickContinueSignUpProcess();
-        //otp
-        signUpPage.clickContinueSignUpProcess();
-        signUpPage.enterFirstName("hippo");
-        signUpPage.enterLastName("pottamus");
+        signUpPage.hideKeyboard();
         signUpPage.clickOnContinueButton();
-        signUpPage.enterUsername("hpp");
-        signUpPage.enterBio("I am strong");
+        assertions.assertEquals(signUpPage.invalidOTPErrorText(),"OTP must be exactly 6 digits");
+        assertions.assertAll();
+    }
+
+
+    @Test(description = "4 | sign up with incomplete OTP on GoalPost app", priority = 3 ,enabled = true)
+    public void checkSignUpWithIncompleteOtp() throws InterruptedException {
+        signUpPage.closeAlert();
+        signUpPage.enterOTP(false);
+        signUpPage.hideKeyboard();
         signUpPage.clickOnContinueButton();
+        assertions.assertEquals(signUpPage.invalidOTPErrorText(),"OTP must be exactly 6 digits");
+        assertions.assertAll();
+    }
+
+    @Test(description = "5 | sign up on GoalPost app", priority = 4 ,enabled = true)
+    public void checkSignUp()
+    {
+//        signUpPage.quitApp();
     }
 
 }
