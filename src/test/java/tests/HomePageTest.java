@@ -134,13 +134,14 @@ public class HomePageTest extends AppBaseSetup {
     public void verifyShareButton() throws InterruptedException
     {
         homePage.clickShareButton();
-        assertions.assertEquals(homePage.getSharedPostPlatformText(),"Quick Share");
+        assertions.assertEquals(homePage.verifySharePopUp(), "Sharing text");
         assertions.assertAll();
     }
 
     @Test(description = "13 | Verify Share URL and Platform", priority = 12)
     public void verifySharePostUrlAndPlatformOption() throws InterruptedException
     {
+        assertions.assertEquals(homePage.getSharedPostPlatformText(),"Messages");
         assertions.assertTrue(homePage.getSharedPostUrl().contains("goalpostapp"));
         assertions.assertTrue(homePage.getSharedPostUrl().contains("invite"));
         assertions.assertAll();

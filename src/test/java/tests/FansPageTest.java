@@ -88,13 +88,23 @@ public class FansPageTest extends AppBaseSetup {
     {
         assertions.assertTrue(fansPage.shareButtonDisplayed());
         homePage.clickShareButton();
-
-
+        assertions.assertEquals(homePage.verifySharePopUp(), "Sharing text");
+        assertions.assertAll();
     }
 
-    @Test(description = "7 | Create Post", priority = 6, enabled = true)
+    @Test(description = "8 | Verify Share Button", priority = 7)
+    public void verifySharePostUrlAndPlatformOption()
+    {
+        assertions.assertEquals(homePage.getSharedPostPlatformText(),"Messages");
+        assertions.assertTrue(homePage.getSharedPostUrl().contains("goalpostapp"));
+        assertions.assertTrue(homePage.getSharedPostUrl().contains("invite"));
+        assertions.assertAll();
+    }
+
+    @Test(description = "9 | Create Post", priority = 8, enabled = true)
     public void verifyPostCreation() throws InterruptedException
     {
+        homePage.navigateBack();
         homePage.clickCreatePost();
         assertions.assertTrue(homePage.checkPostButton());
         homePage.enterTextPostField("Man U is a good football team");
@@ -103,7 +113,7 @@ public class FansPageTest extends AppBaseSetup {
         assertions.assertAll();
     }
 
-    @Test(description = "8 | Verify Cancel Three Dots Menu", priority = 7)
+    @Test(description = "10 | Verify Cancel Three Dots Menu", priority = 9)
     public void verifyThreeDotsMenuClosed() throws InterruptedException
     {
         String postText = homePage.getPostText();
@@ -113,7 +123,7 @@ public class FansPageTest extends AppBaseSetup {
         assertions.assertAll();
     }
 
-    @Test(description = "9 | Verify Edit Post", priority = 8)
+    @Test(description = "11 | Verify Edit Post", priority = 10)
     public void verifyEditPost() throws InterruptedException
     {
         homePage.clickPostThreeDots();
@@ -125,7 +135,7 @@ public class FansPageTest extends AppBaseSetup {
     }
 
 
-    @Test(description = "10 | Verify Cancel Delete Post", priority = 9)
+    @Test(description = "12 | Verify Cancel Delete Post", priority = 11)
     public void verifyCancelDeletePostProcess() throws InterruptedException
     {
         homePage.clickPostThreeDots();
@@ -136,7 +146,7 @@ public class FansPageTest extends AppBaseSetup {
         assertions.assertAll();
     }
 
-    @Test(description = "11 | Verify Delete post", priority = 10)
+    @Test(description = "13 | Verify Delete post", priority = 12)
     public void verifyDeletePost() throws InterruptedException
     {
         homePage.clickDeletePostButton();

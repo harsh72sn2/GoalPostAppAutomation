@@ -34,7 +34,7 @@ public class AppBaseSetup {
 
     @BeforeClass
     @Parameters({"deviceName", "platformVersion", "appPackage", "appActivity", "platform","bsApp"})
-    public void openApp(@Optional("Samsung Galaxy S22 Ultra:12.0") String deviceName,
+    public void openApp(@Optional("Samsung Galaxy S26:16.0") String deviceName,
                         @Optional("16") String platformVersion,
                         @Optional("com.football.goalpost") String appPackage,
                         @Optional("com.football.goalpost.MainActivity") String appActivity,

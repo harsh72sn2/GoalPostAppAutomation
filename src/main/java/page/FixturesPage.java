@@ -123,6 +123,9 @@ public class FixturesPage extends AppActionDriver {
     @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'No Matches found')]")
     private WebElement noMatchesText;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'No matches scheduled')]")
+    private WebElement noTodayMatchesText;
+
     @AndroidFindBy(xpath = "//android.widget.HorizontalScrollView/android.view.ViewGroup/android.view.ViewGroup")
     private List<WebElement> upcomingDates;
 
@@ -323,10 +326,22 @@ public class FixturesPage extends AppActionDriver {
         return isDisplayed(noMatchesText);
     }
 
+    public boolean checkNoTodayMatches()
+    {
+        TestListener.test.log(Status.INFO,"no matches displayed");
+        return isDisplayed(noTodayMatchesText);
+    }
+
     public String getNoMatchesText()
     {
         TestListener.test.log(Status.INFO,"get no matches text");
         return getText(noMatchesText);
+    }
+
+    public String getNoTodayMatchesText()
+    {
+        TestListener.test.log(Status.INFO,"get no matches text");
+        return getText(noTodayMatchesText);
     }
 
     public FixturesPage clickIncreaseTeam1PredictScore()

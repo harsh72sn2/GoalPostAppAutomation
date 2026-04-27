@@ -12,6 +12,7 @@ import page.SignUpPage;
 public class SignUpPageTest extends AppBaseSetup {
 
     SignUpPage signUpPage;
+    HomePage homePage;
     PropertiesFile propertiesFile;
     Assertions assertions;
     WebDriver webDriver;
@@ -20,6 +21,7 @@ public class SignUpPageTest extends AppBaseSetup {
     @BeforeMethod
     public void SignUpPageObject() {
         signUpPage = new SignUpPage(driver);
+        homePage = new HomePage(driver);
         propertiesFile = new PropertiesFile("data.properties");
         assertions = new Assertions();
     }
@@ -69,9 +71,62 @@ public class SignUpPageTest extends AppBaseSetup {
     }
 
     @Test(description = "5 | sign up on GoalPost app", priority = 4 ,enabled = true)
-    public void checkSignUp()
-    {
-//        signUpPage.quitApp();
+    public void checkSignUp() throws InterruptedException {
+        signUpPage.closeAlert();
+        signUpPage.navigateBack();
+        signUpPage.clearEmailField();
+        signUpPage.enterEmailForSignup("kk@yopmail.com");
+        signUpPage.clickContinueSignUpProcess();
+        signUpPage.enterOTP(true);
+        signUpPage.hideKeyboard();
+        signUpPage.clickContinueSignUpProcess();
+        signUpPage.enterFirstName("Kay");
+        signUpPage.enterLastName("Kya");
+        signUpPage.clickOnContinueButton();
+        signUpPage.enterUsername("kaykay");
+        signUpPage.enterBio("I am strong");
+        signUpPage.clickOnContinueButton();
+        signUpPage.clickUploadProfilePicture();
+        signUpPage.clickOpenCameraButton();
+        signUpPage.clickPhoto();
+        signUpPage.clickUploadPhoto();
+        signUpPage.clickCompleteUpload();
+        signUpPage.clickUploadCoverPicture();
+        signUpPage.clickOpenCameraButton();
+        signUpPage.clickPhoto();
+        signUpPage.clickUploadPhoto();
+        signUpPage.clickCompleteUpload();
+        signUpPage.clickOnContinueButton();
+        signUpPage.clickLocationField();
+        signUpPage.enterLocationSearchData("London");
+        signUpPage.selectCity();
+        signUpPage.enterPhoneNumber("1234567891");
+        signUpPage.clickDobField();
+        signUpPage.scrollDobYearTo2002();
+        signUpPage.clickDOBConfirm();
+        signUpPage.clickCompleteProfile();
+        signUpPage.clickChooseTeams();
+        signUpPage.selectMenClub();
+        signUpPage.searchTeam("Manchester");
+        signUpPage.selectManchesterUnited();
+        signUpPage.clickOnContinueButton();
+        signUpPage.selectManchesterCity();
+        signUpPage.clickOnContinueButton();
+        signUpPage.selectArsenalW();
+        signUpPage.clickOnContinueButton();
+        signUpPage.selectAstonVillaW();
+        signUpPage.clickOnContinueButton();
+        signUpPage.selectAustraliaU17();
+        signUpPage.clickOnContinueButton();
+        signUpPage.selectEngland();
+        signUpPage.clickOnContinueButton();
+        signUpPage.selectEnglandW();
+        signUpPage.clickOnContinueButton();
+        signUpPage.selectJapanU20W();
+        signUpPage.clickOnContinueButton();
+        signUpPage.clickOnContinueButton();
+        assertions.assertTrue(homePage.checkSearchField());
+        assertions.assertAll();
     }
 
 }

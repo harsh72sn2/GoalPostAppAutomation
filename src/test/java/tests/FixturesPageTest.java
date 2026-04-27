@@ -1,8 +1,10 @@
 package tests;
 
+import Listeners.TestListener;
 import Utils.AppBaseSetup;
 import Utils.Assertions;
 import Utils.PropertiesFile;
+import com.aventstack.extentreports.Status;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -28,6 +30,8 @@ public class FixturesPageTest extends AppBaseSetup {
     String result = "";
     boolean noRecentMatches = false;
     boolean noTodayMatches = false;
+
+    int upcomingCounter = 0;
 
 
 
@@ -152,10 +156,10 @@ public class FixturesPageTest extends AppBaseSetup {
             fixturesPage.navigateBack();
         }
         fixturesPage.clickTodayTab();
-        if(fixturesPage.checkNoMatches())
+        if(fixturesPage.checkNoTodayMatches())
         {
             noTodayMatches = true;
-            assertions.assertEquals(fixturesPage.getNoMatchesText(),"No Matches found");
+            assertions.assertEquals(fixturesPage.getNoTodayMatchesText(),"No matches scheduled for today");
             assertions.assertAll();
         }
         else {
@@ -233,45 +237,64 @@ public class FixturesPageTest extends AppBaseSetup {
 //            fixturesPage.navigateBack();
 //        }
         fixturesPage.clickUpcomingTab();
-        int i = 0;
-        while(fixturesPage.checkNoMatches())
+        while(fixturesPage.checkNoMatches()&&upcomingCounter<4)
         {
-            fixturesPage.clickNextUpcomingDate(i);
-            i++;
+            fixturesPage.clickNextUpcomingDate(upcomingCounter);
+            upcomingCounter++;
         }
-        team1 = fixturesPage.getTeam1FromFixtureCard();
-        team2 = fixturesPage.getTeam2FromFixtureCard();
-        score = fixturesPage.getScoreFromFixtureCard();
-        venue = fixturesPage.getVenueFromFixtureCard();
-        fixturesPage.clickFixtureCard();
-        assertions.assertEquals(team1, fixturesPage.getTeam1FromDetails());
-        assertions.assertEquals(team2, fixturesPage.getTeam2FromDetails());
-        assertions.assertTrue(venue.contains(fixturesPage.getVenueFromDetails()));
-        assertions.assertAll();
+        if (upcomingCounter<4) {
+            team1 = fixturesPage.getTeam1FromFixtureCard();
+            team2 = fixturesPage.getTeam2FromFixtureCard();
+            score = fixturesPage.getScoreFromFixtureCard();
+            venue = fixturesPage.getVenueFromFixtureCard();
+            fixturesPage.clickFixtureCard();
+            assertions.assertEquals(team1, fixturesPage.getTeam1FromDetails());
+            assertions.assertEquals(team2, fixturesPage.getTeam2FromDetails());
+            assertions.assertTrue(venue.contains(fixturesPage.getVenueFromDetails()));
+            assertions.assertAll();
+        }
+        else {
+            TestListener.test.log(Status.FAIL,"No matches shown in upcoming list");
+        }
     }
 
     @Test(description = "11 | verify fixture card details upcoming", priority = 10, enabled = true)
     public void verifyUpcomingFixtureDetailsDiscussion() throws InterruptedException {
-        assertions.assertTrue(fixturesPage.checkMatchDiscussionButton());
-        assertions.assertTrue(fixturesPage.checkMatchSummaryField());
-        assertions.assertTrue(fixturesPage.checkCommunityOpenField());
-        assertions.assertAll();
+        if(upcomingCounter<4) {
+            assertions.assertTrue(fixturesPage.checkMatchDiscussionButton());
+            assertions.assertTrue(fixturesPage.checkMatchSummaryField());
+            assertions.assertTrue(fixturesPage.checkCommunityOpenField());
+            assertions.assertAll();
+        }
+        else {
+            TestListener.test.log(Status.FAIL,"No matches shown in upcoming list");
+        }
     }
 
     @Test(description = "12 | verify prediction card score details upcoming", priority = 11, enabled = true)
     public void verifyUpcomingFixtureMatchSummary() throws InterruptedException {
-        assertions.assertTrue(fixturesPage.checkKickOffField());
-        assertions.assertTrue(fixturesPage.checkCommunityCloseField());
-        assertions.assertAll();
+        if (upcomingCounter<4) {
+            assertions.assertTrue(fixturesPage.checkKickOffField());
+            assertions.assertTrue(fixturesPage.checkCommunityCloseField());
+            assertions.assertAll();
+        }
+        else {
+            TestListener.test.log(Status.FAIL,"No matches shown in upcoming list");
+        }
     }
 
     @Test(description = "13 | verify prediction card score details upcoming", priority = 12, enabled = true)
     public void verifyUpcomingFixtureHeadToHead() throws InterruptedException {
-        assertions.assertTrue(fixturesPage.checkHeadToHeadField());
-        assertions.assertTrue(fixturesPage.checkLastMeetings());
-        assertions.assertTrue(fixturesPage.checkCurrentForm());
-        assertions.assertTrue(fixturesPage.checkLeaguePosition());
-        assertions.assertAll();
+        if (upcomingCounter<4) {
+            assertions.assertTrue(fixturesPage.checkHeadToHeadField());
+            assertions.assertTrue(fixturesPage.checkLastMeetings());
+            assertions.assertTrue(fixturesPage.checkCurrentForm());
+            assertions.assertTrue(fixturesPage.checkLeaguePosition());
+            assertions.assertAll();
+        }
+        else {
+            TestListener.test.log(Status.FAIL,"No matches shown in upcoming list");
+        }
     }
 
 

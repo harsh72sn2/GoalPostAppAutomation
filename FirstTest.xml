@@ -7,8 +7,8 @@
             <class name="tests.SignUpPageTest"/>
             <class name="tests.LoginPageTest"/>
             <class name="tests.HomePageTest"/>
-            <class name="tests.FixturesPageTest"/>
             <class name="tests.FansPageTest"/>
+            <class name="tests.FixturesPageTest"/>
         </classes>
     </test>
 </suite>
