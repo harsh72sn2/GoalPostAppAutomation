@@ -135,6 +135,9 @@ public class HomePage extends AppActionDriver {
     @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc='Create Sub Community']")
     private WebElement createSubCommunityButton;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'not relevant to football')]")
+    private WebElement noFootBallContextPostError;
+
     public boolean checkSearchField()
     {
         TestListener.test.log(Status.INFO,"Checking presence of search field");
@@ -225,9 +228,9 @@ public class HomePage extends AppActionDriver {
         return this;
     }
 
-    public HomePage clickPostButton()
-    {
+    public HomePage clickPostButton() throws InterruptedException {
         TestListener.test.log(Status.INFO,"clicking send post button");
+        Thread.sleep(5000);
         click(postButton);
         return this;
     }
@@ -352,6 +355,19 @@ public class HomePage extends AppActionDriver {
     {
         TestListener.test.log(Status.INFO, "check post exist with three dots");
         return isDisplayed(postThreeDots);
+    }
+
+    public String getTextErrorNoFootBallContextMessage()
+    {
+        TestListener.test.log(Status.INFO,"Getting error message no context football post");
+        return getText(noFootBallContextPostError);
+    }
+
+    public HomePage clearPostField()
+    {
+        TestListener.test.log(Status.INFO,"Clearing post field");
+        clearField(createPostTextField);
+        return this;
     }
 }
 

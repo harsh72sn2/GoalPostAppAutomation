@@ -4,11 +4,13 @@ import Listeners.TestListener;
 import Utils.AppActionDriver;
 import Utils.PropertiesFile;
 import com.aventstack.extentreports.Status;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
@@ -41,14 +43,26 @@ public class SignUpPage extends AppActionDriver {
     @AndroidFindBy(xpath = "//android.widget.EditText[@text='First Name']")
     private WebElement firstNameField;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='First name is required']")
+    private WebElement firstNameValidation;
+
     @AndroidFindBy(xpath = "//android.widget.EditText[@text='Last Name']")
     private WebElement lastNameField;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Last name is required']")
+    private WebElement lastNameValidation;
 
     @AndroidFindBy(xpath = "//android.widget.EditText[@text='Username']")
     private WebElement userNameField;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Username is required']")
+    private WebElement userNameValidation;
+
     @AndroidFindBy(xpath = "//android.widget.EditText[@text='Bio']")
     private WebElement bioField;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Bio is required']")
+    private WebElement bioValidationError;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Destination is required']")
     private WebElement destinationError;
@@ -65,12 +79,20 @@ public class SignUpPage extends AppActionDriver {
     @AndroidFindBy(xpath = "(//android.view.ViewGroup[@content-desc='Edit'])[1]/android.widget.ImageView")
     private WebElement uploadProfilePicture;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Profile picture is required']")
+    private WebElement profilePictureValidation;
+
     @AndroidFindBy(xpath = "(//android.view.ViewGroup[@content-desc='Edit'])[2]/android.widget.ImageView")
     private WebElement uploadCoverPicture;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Cover image is required']")
+    private WebElement coverPictureValidation;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Open Camera')]")
     private WebElement openCameraButton;
 
+    @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.android.permissioncontroller:id/permission_allow_foreground_only_button']")
+    private WebElement allowCameraButton;
     @AndroidFindBy(xpath = "//android.widget.ImageButton[@content-desc='Take photo']")
     private WebElement clickPhoto;
 
@@ -92,7 +114,13 @@ public class SignUpPage extends AppActionDriver {
     @AndroidFindBy(xpath = "//android.widget.EditText[@text='Phone Number']")
     private WebElement phoneNumberField;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='mm/dd/yyyy']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Phone number is required']")
+    private WebElement phoneNumberValidation;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Date of birth is required']")
+    private WebElement dobValidation;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Date of Birth']//following-sibling::android.view.ViewGroup/android.widget.TextView")
     private WebElement dobField;
 
     @AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.football.goalpost:id/pickerWrapper']")
@@ -103,6 +131,9 @@ public class SignUpPage extends AppActionDriver {
 
     @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1']")
     private WebElement confirmDOBButton;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text, 'at least 13 years old')]")
+    private WebElement ageCheckMessage;
 
     @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"Men's Club\"]")
     private WebElement menClubSelection;
@@ -220,6 +251,15 @@ public class SignUpPage extends AppActionDriver {
         return this;
     }
 
+    public SignUpPage clickAllowCameraButton()
+    {
+        TestListener.test.log(Status.INFO, "Clicking allow camera button");
+        if(isDisplayed(allowCameraButton)) {
+            click(allowCameraButton);
+        }
+        return this;
+    }
+
     public SignUpPage clickPhoto()
     {
         TestListener.test.log(Status.INFO, "Clicking photo");
@@ -251,7 +291,7 @@ public class SignUpPage extends AppActionDriver {
     public SignUpPage enterLocationSearchData(String location)
     {
         TestListener.test.log(Status.INFO,"Searching Location");
-        type(searchLocation,"London");
+        type(searchLocation, location);
         return this;
     }
 
@@ -400,6 +440,60 @@ public class SignUpPage extends AppActionDriver {
         return getText(invalidEmailError);
     }
 
+    public String firstNameValidationErrorText()
+    {
+        TestListener.test.log(Status.INFO, "Getting error for first name blank");
+        return getText(firstNameValidation);
+    }
+
+    public String lastNameValidationErrorText()
+    {
+        TestListener.test.log(Status.INFO, "Getting error for last name blank");
+        return getText(lastNameValidation);
+    }
+
+    public String userNameValidationErrorText()
+    {
+        TestListener.test.log(Status.INFO, "Getting error for username blank");
+        return getText(userNameValidation);
+    }
+
+    public String bioValidationErrorText()
+    {
+        TestListener.test.log(Status.INFO, "Getting error for bio blank");
+        return getText(bioValidationError);
+    }
+
+    public String profilePictureValidationErrorText()
+    {
+        TestListener.test.log(Status.INFO, "Getting error for profile picture blank");
+        return getText(profilePictureValidation);
+    }
+
+    public String coverPictureValidationErrorText()
+    {
+        TestListener.test.log(Status.INFO, "Getting error for cover image blank");
+        return getText(coverPictureValidation);
+    }
+
+    public String phoneNumberValidationErrorText()
+    {
+        TestListener.test.log(Status.INFO, "Getting error for phone number blank");
+        return getText(phoneNumberValidation);
+    }
+
+    public String dobValidationErrorText()
+    {
+        TestListener.test.log(Status.INFO, "Getting error for dob blank");
+        return getText(dobValidation);
+    }
+
+    public String ageCheckValidationErrorText()
+    {
+        TestListener.test.log(Status.INFO, "Getting error for age check");
+        return getText(ageCheckMessage);
+    }
+
     public SignUpPage closeAlert()
     {
         TestListener.test.log(Status.INFO,"closing alert");
@@ -454,6 +548,74 @@ public class SignUpPage extends AppActionDriver {
     {
         TestListener.test.log(Status.INFO,"Click choose teams");
         click(chooseTeams);
+        return this;
+    }
+
+    public SignUpPage selectDobYear(String targetYear) throws InterruptedException {
+        TestListener.test.log(Status.INFO, "Selecting DOB year: " + targetYear);
+
+        waitForElementVisible(dobPickerWrapper);
+
+        WebElement yearColumn = dobPickerWrapper;
+        double xPercent = 0.83;
+
+        if (dobPickerColumns.size() > 0) {
+            yearColumn = dobPickerColumns.get(dobPickerColumns.size() - 1);
+            xPercent = 0.5;
+        }
+
+        int maxSwipes = 40; // safe upper bound
+        int attempts = 0;
+
+        while (attempts < maxSwipes) {
+
+            // ✅ Best effort detection
+            try {
+                String visible = yearColumn.getText();
+
+                if (visible != null && visible.contains(targetYear)) {
+                    logger.info("Year selected: {}", targetYear);
+                    return this;
+                }
+            } catch (Exception ignored) {}
+
+            // ✅ Fallback detection (last resort)
+            if (driver.getPageSource().contains(targetYear)) {
+                logger.info("Year found via page source: {}", targetYear);
+                return this;
+            }
+
+            // 🔥 Always scroll DOWN (towards older years)
+            swipeVerticalOnElement(yearColumn, xPercent, 0.65, 0.35);
+
+            Thread.sleep(200);
+            attempts++;
+        }
+
+        throw new RuntimeException("Unable to select year: " + targetYear);
+    }
+
+    public SignUpPage selectDobYear2(String targetYear) {
+        TestListener.test.log(Status.INFO, "Selecting DOB year: " + targetYear);
+
+        // 1. Ensure the year picker list is actually open/visible before scrolling
+        waitForElementVisible(dobPickerWrapper);
+
+        try {
+            // 2. Define the UiScrollable command targeting your specific resource ID
+            // .scrollIntoView moves the list until the element with the target text is found
+            String scrollCommand = "new UiScrollable(new UiSelector().resourceId(\"com.football.goalpost:id/pickerWrapper\"))"
+                    + ".scrollIntoView(new UiSelector().text(\"" + targetYear + "\"))";
+
+            // 3. Find and click the element in one go
+            driver.findElement(AppiumBy.androidUIAutomator(scrollCommand)).click();
+
+            logger.info("Successfully selected year: {}", targetYear);
+        } catch (NoSuchElementException e) {
+            logger.error("Could not find year {} in the pickerWrapper", targetYear);
+            throw new RuntimeException("Year " + targetYear + " not found in picker list: " + e.getMessage());
+        }
+
         return this;
     }
 

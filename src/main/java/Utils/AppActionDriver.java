@@ -201,24 +201,41 @@ public class AppActionDriver extends Waits {
                 .release().perform();
     }
 
-    protected void swipeVerticalOnElement(WebElement elementContainer, double xPercent, double startYPercent, double endYPercent) {
+    protected void swipeVerticalOnElement(WebElement elementContainer,
+                                          double xPercent,
+                                          double startYPercent,
+                                          double endYPercent) {
 
-        Point location = elementContainer.getLocation();
-        Dimension size = elementContainer.getSize();
+        Rectangle rect = elementContainer.getRect();
 
-        int x = location.getX() + (int) (size.getWidth() * xPercent);
-        int startY = location.getY() + (int) (size.getHeight() * startYPercent);
-        int endY = location.getY() + (int) (size.getHeight() * endYPercent);
+        // ✅ Relative coordinates (device independent)
+        int x = rect.getX() + (int) (rect.getWidth() * xPercent);
+
+        int startY = rect.getY() + (int) (rect.getHeight() * startYPercent);
+        int endY   = rect.getY() + (int) (rect.getHeight() * endYPercent);
 
         PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
         Sequence swipe = new Sequence(finger, 1);
 
-        swipe.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), x, startY));
+        swipe.addAction(finger.createPointerMove(Duration.ZERO,
+                PointerInput.Origin.viewport(), x, startY));
+
         swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
-        swipe.addAction(finger.createPointerMove(Duration.ofMillis(500), PointerInput.Origin.viewport(), x, endY));
+
+        // 🔥 Faster + shorter swipe → less inertia
+        swipe.addAction(finger.createPointerMove(Duration.ofMillis(250),
+                PointerInput.Origin.viewport(), x, endY));
+
         swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 
         driver.perform(Collections.singletonList(swipe));
+
+        // ✅ Stabilization (VERY IMPORTANT for pickers)
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 
     public AndroidDriver getDriver() {

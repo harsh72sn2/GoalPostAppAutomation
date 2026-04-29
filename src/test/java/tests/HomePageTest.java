@@ -47,32 +47,42 @@ public class HomePageTest extends AppBaseSetup {
         assertions.assertAll();
     }
 
-    @Test(description = "3 | Create Post", priority = 2, enabled = true)
-    public void verifyPostCreation() throws InterruptedException
+    @Test(description = "3 | Create Post No football context", priority = 2, enabled = true)
+    public void verifyPostCreationWithUnrelatedFootballContent() throws InterruptedException
     {
         homePage.clickCreatePost();
         assertions.assertTrue(homePage.checkPostButton());
+        homePage.enterTextPostField("Tets No");
+        homePage.clickPostButton();
+        assertions.assertTrue(homePage.getTextErrorNoFootBallContextMessage().contains("Content is not relevant to football"));
+        assertions.assertAll();
+    }
+
+    @Test(description = "4 | Create Post", priority = 3, enabled = true)
+    public void verifyPostCreation() throws InterruptedException
+    {
+        homePage.clearPostField();
         homePage.enterTextPostField("Man U is a good football team");
         homePage.clickPostButton();
         assertions.assertEquals(homePage.getPostText(),"Man U is a good football team");
         assertions.assertAll();
     }
 
-    @Test(description = "4 | Check Created Post Username",priority = 3, enabled = true)
+    @Test(description = "5 | Check Created Post Username",priority = 4, enabled = true)
     public void checkCreatedPostUserName() throws InterruptedException
     {
         assertions.assertEquals(homePage.getCreatedPostUserName(),"@craig");
         assertions.assertAll();
     }
 
-    @Test(description = "5 | Check Created Post Community", priority = 4, enabled = true)
+    @Test(description = "6 | Check Created Post Community", priority = 5, enabled = true)
     public void checkCreatedPostCommunity() throws InterruptedException
     {
         assertions.assertEquals(homePage.getCreatedPostCommunity(),"My Page");
         assertions.assertAll();
     }
 
-    @Test(description = "6 | Like post", priority = 5, enabled = true)
+    @Test(description = "7 | Like post", priority = 6, enabled = true)
     public void verifyPostLiking() throws InterruptedException
     {
         int initialLikeCount = Integer.parseInt(homePage.getLikeCount());
@@ -82,7 +92,7 @@ public class HomePageTest extends AppBaseSetup {
         assertions.assertAll();
     }
 
-    @Test(description = "7 | Remove Like from post", priority = 6)
+    @Test(description = "8 | Remove Like from post", priority = 7)
     public void removeLikeFromPost() throws InterruptedException
     {
         int initialLikeCount = Integer.parseInt(homePage.getLikeCount());
@@ -93,7 +103,7 @@ public class HomePageTest extends AppBaseSetup {
         assertions.assertAll();
     }
 
-    @Test(description = "8 | Verify an empty comment on post", priority = 7)
+    @Test(description = "9 | Verify an empty comment on post", priority = 8)
     public void verifyEmptyComment() throws InterruptedException
     {
         homePage.clickCommentButton();
@@ -104,7 +114,7 @@ public class HomePageTest extends AppBaseSetup {
         assertions.assertAll();
     }
 
-    @Test(description = "9 | Write a comment on post", priority = 8)
+    @Test(description = "10 | Write a comment on post", priority = 9)
     public void writeCommentOnPost() throws InterruptedException
     {
         assertions.assertTrue(homePage.checkCommentFieldPresence());
@@ -115,14 +125,14 @@ public class HomePageTest extends AppBaseSetup {
         assertions.assertAll();
     }
 
-    @Test(description = "10 | Verify View Count" , priority = 9)
+    @Test(description = "11 | Verify View Count" , priority = 10)
     public void verifyViewCount() throws InterruptedException
     {
         assertions.assertTrue(Integer.parseInt(homePage.getViewCount())>0);
         assertions.assertAll();
     }
 
-    @Test(description = "11 | Verify Report Button", priority = 10)
+    @Test(description = "12 | Verify Report Button", priority = 11)
     public void verifyReportButton() throws InterruptedException
     {
         homePage.clickReportButton();
@@ -130,7 +140,7 @@ public class HomePageTest extends AppBaseSetup {
         assertions.assertAll();
     }
 
-    @Test(description = "12 | Verify Share Button", priority = 11)
+    @Test(description = "13 | Verify Share Button", priority = 12)
     public void verifyShareButton() throws InterruptedException
     {
         homePage.clickShareButton();
@@ -138,7 +148,7 @@ public class HomePageTest extends AppBaseSetup {
         assertions.assertAll();
     }
 
-    @Test(description = "13 | Verify Share URL and Platform", priority = 12)
+    @Test(description = "14 | Verify Share URL and Platform", priority = 13)
     public void verifySharePostUrlAndPlatformOption() throws InterruptedException
     {
         assertions.assertEquals(homePage.getSharedPostPlatformText(),"Messages");
@@ -147,7 +157,7 @@ public class HomePageTest extends AppBaseSetup {
         assertions.assertAll();
     }
 
-    @Test(description = "14 | Verify Post Three dots options", priority = 13)
+    @Test(description = "15 | Verify Post Three dots options", priority = 14)
     public void verifyThreeDotsEditAndDeleteOption() throws InterruptedException
     {
         homePage.navigateBack();
@@ -158,7 +168,7 @@ public class HomePageTest extends AppBaseSetup {
         assertions.assertAll();
     }
 
-    @Test(description = "15 | Verify Cancel Three Dots Menu", priority = 14)
+    @Test(description = "16 | Verify Cancel Three Dots Menu", priority = 15)
     public void verifyThreeDotsMenuClosed() throws InterruptedException
     {
         String postText = homePage.getPostText();
@@ -168,11 +178,21 @@ public class HomePageTest extends AppBaseSetup {
         assertions.assertAll();
     }
 
-    @Test(description = "16 | Verify Edit Post", priority = 15)
-    public void verifyEditPost() throws InterruptedException
+    @Test(description = "17 | Verify Edit Post with No football context post", priority = 16)
+    public void verifyEditPostNoFootBallContext() throws InterruptedException
     {
         homePage.clickPostThreeDots();
         homePage.clickEditPostButton();
+        homePage.enterTextPostField("Tets No");
+        homePage.clickPostButton();
+        assertions.assertEquals(homePage.getTextErrorNoFootBallContextMessage(),"Content is not relevant to football. The content 'Tets No' does not contain any recognizable football terms or context.");
+        assertions.assertAll();
+    }
+
+    @Test(description = "18 | Verify Edit Post", priority = 17)
+    public void verifyEditPost() throws InterruptedException
+    {
+        homePage.clearPostField();
         homePage.enterTextPostField("Man U is a Better Team");
         homePage.clickPostButton();
         assertions.assertEquals(homePage.getPostText(), "Man U is a Better Team");
@@ -180,7 +200,7 @@ public class HomePageTest extends AppBaseSetup {
     }
 
 
-    @Test(description = "17 | Verify Cancel Delete Post", priority = 16)
+    @Test(description = "19 | Verify Cancel Delete Post", priority = 18)
     public void verifyCancelDeletePostProcess() throws InterruptedException
     {
         homePage.clickPostThreeDots();
@@ -191,7 +211,7 @@ public class HomePageTest extends AppBaseSetup {
         assertions.assertAll();
     }
 
-    @Test(description = "18 | Verify Delete post", priority = 17)
+    @Test(description = "20 | Verify Delete post", priority = 19)
     public void verifyDeletePost() throws InterruptedException
     {
         homePage.clickDeletePostButton();

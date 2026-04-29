@@ -101,19 +101,29 @@ public class FansPageTest extends AppBaseSetup {
         assertions.assertAll();
     }
 
-    @Test(description = "9 | Create Post", priority = 8, enabled = true)
-    public void verifyPostCreation() throws InterruptedException
+    @Test(description = "9 | Create Post No Football Context", priority = 8, enabled = true)
+    public void verifyPostCreationNoFootballContext() throws InterruptedException
     {
         homePage.navigateBack();
         homePage.clickCreatePost();
         assertions.assertTrue(homePage.checkPostButton());
+        homePage.enterTextPostField("Tets No");
+        homePage.clickPostButton();
+        assertions.assertTrue(homePage.getTextErrorNoFootBallContextMessage().contains("Content is not relevant to football"));
+        assertions.assertAll();
+    }
+
+    @Test(description = "10 | Create Post", priority = 9, enabled = true)
+    public void verifyPostCreation() throws InterruptedException
+    {
+        homePage.clearPostField();
         homePage.enterTextPostField("Man U is a good football team");
         homePage.clickPostButton();
         assertions.assertEquals(homePage.getPostText(),"Man U is a good football team");
         assertions.assertAll();
     }
 
-    @Test(description = "10 | Verify Cancel Three Dots Menu", priority = 9)
+    @Test(description = "11 | Verify Cancel Three Dots Menu", priority = 10)
     public void verifyThreeDotsMenuClosed() throws InterruptedException
     {
         String postText = homePage.getPostText();
@@ -123,11 +133,21 @@ public class FansPageTest extends AppBaseSetup {
         assertions.assertAll();
     }
 
-    @Test(description = "11 | Verify Edit Post", priority = 10)
-    public void verifyEditPost() throws InterruptedException
+    @Test(description = "12 | Verify Edit Post No Context Football", priority = 11)
+    public void verifyEditPostNoContextFootball() throws InterruptedException
     {
         homePage.clickPostThreeDots();
         homePage.clickEditPostButton();
+        homePage.enterTextPostField("Tets No");
+        homePage.clickPostButton();
+        assertions.assertTrue(homePage.getTextErrorNoFootBallContextMessage().contains("Content is not relevant to football"));
+        assertions.assertAll();
+    }
+
+    @Test(description = "13 | Verify Edit Post", priority = 12)
+    public void verifyEditPost() throws InterruptedException
+    {
+        homePage.clearPostField();
         homePage.enterTextPostField("Man U is a Better Team");
         homePage.clickPostButton();
         assertions.assertEquals(homePage.getPostText(), "Man U is a Better Team");
@@ -135,7 +155,7 @@ public class FansPageTest extends AppBaseSetup {
     }
 
 
-    @Test(description = "12 | Verify Cancel Delete Post", priority = 11)
+    @Test(description = "14 | Verify Cancel Delete Post", priority = 13)
     public void verifyCancelDeletePostProcess() throws InterruptedException
     {
         homePage.clickPostThreeDots();
@@ -146,7 +166,7 @@ public class FansPageTest extends AppBaseSetup {
         assertions.assertAll();
     }
 
-    @Test(description = "13 | Verify Delete post", priority = 12)
+    @Test(description = "15 | Verify Delete post", priority = 14)
     public void verifyDeletePost() throws InterruptedException
     {
         homePage.clickDeletePostButton();
