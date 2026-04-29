@@ -34,11 +34,11 @@ public class AppBaseSetup {
 
     @BeforeClass
     @Parameters({"deviceName", "platformVersion", "appPackage", "appActivity", "platform","bsApp"})
-    public void openApp(@Optional("Samsung Galaxy S26:16.0") String deviceName,
+    public void openApp(@Optional("48231FDAQ002JD") String deviceName,
                         @Optional("16") String platformVersion,
                         @Optional("com.football.goalpost") String appPackage,
                         @Optional("com.football.goalpost.MainActivity") String appActivity,
-                        @Optional("cloud") String platform,
+                        @Optional("app") String platform,
                         @Optional("bs://11f9818fba27ff8abced0a944513cb4d89a82e1f") String bsApp) throws Exception {
 
         PropertiesFile prop = new PropertiesFile("app.properties");

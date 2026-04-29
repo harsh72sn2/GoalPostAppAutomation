@@ -110,9 +110,6 @@ public class FixturesPageTest extends AppBaseSetup {
             assertions.assertAll();
         }
         else {
-            if (!fixturesPage.checkMatchStatsTab()) {
-                throw new SkipException("48 Hours past since match completion");
-            } else {
                 fixturesPage.clickIncreaseTeam1PredictScore();
                 fixturesPage.clickIncreaseTeam1PredictScore();
                 fixturesPage.clickIncreaseTeam2PredictScore();
@@ -120,7 +117,6 @@ public class FixturesPageTest extends AppBaseSetup {
                 Thread.sleep(2000);
                 assertions.assertEquals(fixturesPage.getPredictionScore(), "2 - 1");
                 assertions.assertAll();
-            }
         }
     }
 
@@ -132,10 +128,6 @@ public class FixturesPageTest extends AppBaseSetup {
             assertions.assertAll();
         }
         else {
-            if (!fixturesPage.checkMatchStatsTab()) {
-                throw new SkipException("48 Hours past since match completion");
-
-            } else {
                 fixturesPage.clickDecreaseTeam1PredictScore();
                 fixturesPage.clickDecreaseTeam1PredictScore();
                 fixturesPage.clickDecreaseTeam2PredictScore();
@@ -146,7 +138,6 @@ public class FixturesPageTest extends AppBaseSetup {
                 Thread.sleep(2000);
                 assertions.assertEquals(fixturesPage.getPredictionScore(), "0 - 3");
                 assertions.assertAll();
-            }
         }
     }
 
@@ -233,16 +224,16 @@ public class FixturesPageTest extends AppBaseSetup {
 
     @Test(description = "10 | verify fixture card details upcoming", priority = 9, enabled = true)
     public void verifyTeamScoreVenueInUpcomingFixtureCard() throws InterruptedException {
-//        if(!noTodayMatches) {
-//            fixturesPage.navigateBack();
-//        }
+        if(!noTodayMatches) {
+            fixturesPage.navigateBack();
+        }
         fixturesPage.clickUpcomingTab();
-        while(fixturesPage.checkNoMatches()&&upcomingCounter<4)
+        while(fixturesPage.checkNoMatches()&&upcomingCounter<8)
         {
             fixturesPage.clickNextUpcomingDate(upcomingCounter);
             upcomingCounter++;
         }
-        if (upcomingCounter<4) {
+        if (upcomingCounter<8) {
             team1 = fixturesPage.getTeam1FromFixtureCard();
             team2 = fixturesPage.getTeam2FromFixtureCard();
             score = fixturesPage.getScoreFromFixtureCard();
@@ -260,7 +251,7 @@ public class FixturesPageTest extends AppBaseSetup {
 
     @Test(description = "11 | verify fixture card details upcoming", priority = 10, enabled = true)
     public void verifyUpcomingFixtureDetailsDiscussion() throws InterruptedException {
-        if(upcomingCounter<4) {
+        if(upcomingCounter<8) {
             assertions.assertTrue(fixturesPage.checkMatchDiscussionButton());
             assertions.assertTrue(fixturesPage.checkMatchSummaryField());
             assertions.assertTrue(fixturesPage.checkCommunityOpenField());
@@ -273,7 +264,7 @@ public class FixturesPageTest extends AppBaseSetup {
 
     @Test(description = "12 | verify prediction card score details upcoming", priority = 11, enabled = true)
     public void verifyUpcomingFixtureMatchSummary() throws InterruptedException {
-        if (upcomingCounter<4) {
+        if (upcomingCounter<8) {
             assertions.assertTrue(fixturesPage.checkKickOffField());
             assertions.assertTrue(fixturesPage.checkCommunityCloseField());
             assertions.assertAll();
@@ -285,7 +276,7 @@ public class FixturesPageTest extends AppBaseSetup {
 
     @Test(description = "13 | verify prediction card score details upcoming", priority = 12, enabled = true)
     public void verifyUpcomingFixtureHeadToHead() throws InterruptedException {
-        if (upcomingCounter<4) {
+        if (upcomingCounter<8) {
             assertions.assertTrue(fixturesPage.checkHeadToHeadField());
             assertions.assertTrue(fixturesPage.checkLastMeetings());
             assertions.assertTrue(fixturesPage.checkCurrentForm());

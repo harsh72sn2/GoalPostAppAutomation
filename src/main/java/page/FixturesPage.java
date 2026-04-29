@@ -385,9 +385,9 @@ public class FixturesPage extends AppActionDriver {
         return getText(predictionsCardScore);
     }
 
-    public FixturesPage clickNextUpcomingDate(int index)
-    {
+    public FixturesPage clickNextUpcomingDate(int index) throws InterruptedException {
         TestListener.test.log(Status.INFO,"Clicking next upcoming date");
+        Thread.sleep(3000);
         click(upcomingDates.get(index));
         return this;
     }
